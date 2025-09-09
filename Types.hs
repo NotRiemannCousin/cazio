@@ -220,3 +220,6 @@ data SecaoTransversal = SecaoRetangular Largura Altura
                         | SecaoCircular Raio
                         | SecaoI Altura Largura Espessura Espessura -- h, b, tw, tf
                         deriving (Show, Eq)
+
+data ArvoreBinaria a = Vazia | No a (ArvoreBinaria a) (ArvoreBinaria a)
+                        deriving (Show, Eq)

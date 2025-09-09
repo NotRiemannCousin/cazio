@@ -7,40 +7,40 @@ import Data.List (sort, nub)
 -- Casos básicos
 
 testeQuickSortVazio::Bool
-testeQuickSortVazio =quickSort ([]::[Int]) == []
+testeQuickSortVazio = quickSort ([]::[Int]) == []
 
 testeQuickSortUmElemento::Bool
-testeQuickSortUmElemento =quickSort [42] == [42]
+testeQuickSortUmElemento = quickSort [42] == [42]
 
 testeQuickSortDoisElementos::Bool
-testeQuickSortDoisElementos =quickSort [10, 5] == [5, 10]
+testeQuickSortDoisElementos = quickSort [10, 5] == [5, 10]
 
 testeQuickSortTresElementos::Bool
-testeQuickSortTresElementos =quickSort [3, 1, 2] == [1, 2, 3]
+testeQuickSortTresElementos = quickSort [3, 1, 2] == [1, 2, 3]
 
 -- Listas já ordenadas
 
 testeQuickSortOrdenado::Bool
-testeQuickSortOrdenado =quickSort [1, 2, 3, 4, 5] == [1, 2, 3, 4, 5]
+testeQuickSortOrdenado = quickSort [1, 2, 3, 4, 5] == [1, 2, 3, 4, 5]
 
 testeQuickSortOrdenadoGrande::Bool
-testeQuickSortOrdenadoGrande =quickSort [1..20] == [1..20]
+testeQuickSortOrdenadoGrande = quickSort [1..20] == [1..20]
 
 -- Listas em ordem reversa
 
 testeQuickSortInverso::Bool
-testeQuickSortInverso =quickSort [5, 4, 3, 2, 1] == [1, 2, 3, 4, 5]
+testeQuickSortInverso = quickSort [5, 4, 3, 2, 1] == [1, 2, 3, 4, 5]
 
 testeQuickSortInversoGrande::Bool
-testeQuickSortInversoGrande =quickSort [20, 19..1] == [1..20]
+testeQuickSortInversoGrande = quickSort [20, 19..1] == [1..20]
 
 -- Elementos duplicados
 
 testeQuickSortDuplicados::Bool
-testeQuickSortDuplicados =quickSort [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] == [1, 1, 2, 3, 3, 4, 5, 5, 7, 9]
+testeQuickSortDuplicados = quickSort [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] == [1, 1, 2, 3, 3, 4, 5, 5, 7, 9]
 
 testeQuickSortTodosDuplicados::Bool
-testeQuickSortTodosDuplicados =quickSort [7, 7, 7, 7, 7] == [7, 7, 7, 7, 7]
+testeQuickSortTodosDuplicados = quickSort [7, 7, 7, 7, 7] == [7, 7, 7, 7, 7]
 
 testeQuickSortMuitasDuplicatas::Bool
 testeQuickSortMuitasDuplicatas =
@@ -51,7 +51,7 @@ testeQuickSortMuitasDuplicatas =
 -- Números negativos
 
 testeQuickSortNegativos::Bool
-testeQuickSortNegativos =quickSort [-5,-1,-10,-3,-7] == [-10,-7,-5,-3,-1]
+testeQuickSortNegativos = quickSort [-5,-1,-10,-3,-7] == [-10,-7,-5,-3,-1]
 
 testeQuickSortMistoPositivoNegativo::Bool
 testeQuickSortMistoPositivoNegativo =
@@ -64,7 +64,7 @@ testeQuickSortStrings =
     quickSort ["zebra", "apple", "banana", "cherry"] == ["apple", "banana", "cherry", "zebra"]
 
 testeQuickSortCaracteres::Bool
-testeQuickSortCaracteres =quickSort ['d', 'a', 'c', 'b'] == ['a', 'b', 'c', 'd']
+testeQuickSortCaracteres = quickSort ['d', 'a', 'c', 'b'] == ['a', 'b', 'c', 'd']
 
 testeQuickSortDecimais::Bool
 testeQuickSortDecimais =
@@ -81,8 +81,8 @@ testeQuickSortGrande =
 
 testeQuickSortValoresExtremos::Bool
 testeQuickSortValoresExtremos =
-	    let maxInt = 2147483647
-        minInt =-2147483648
+    let maxInt = 2147483647
+        minInt = -2147483648
         lista = [maxInt, 0, minInt, 1,-1]
         esperado = [minInt,-1, 0, 1, maxInt]
     in quickSort lista == esperado
@@ -104,43 +104,43 @@ testeQuickSortFibonacci =
 -- Casos básicos
 
 testeMergeSortVazio::Bool
-testeMergeSortVazio =mergeSort ([]::[Int]) == []
+testeMergeSortVazio = mergeSort ([]::[Int]) == []
 
 testeMergeSortUmElemento::Bool
-testeMergeSortUmElemento =mergeSort [42] == [42]
+testeMergeSortUmElemento = mergeSort [42] == [42]
 
 testeMergeSortDoisElementos::Bool
-testeMergeSortDoisElementos =mergeSort [10, 5] == [5, 10]
+testeMergeSortDoisElementos = mergeSort [10, 5] == [5, 10]
 
 testeMergeSortTresElementos::Bool
-testeMergeSortTresElementos =mergeSort [3, 1, 2] == [1, 2, 3]
+testeMergeSortTresElementos = mergeSort [3, 1, 2] == [1, 2, 3]
 
 -- Listas já ordenadas
 
 testeMergeSortOrdenado::Bool
-testeMergeSortOrdenado =mergeSort [1, 2, 3, 4, 5] == [1, 2, 3, 4, 5]
+testeMergeSortOrdenado = mergeSort [1, 2, 3, 4, 5] == [1, 2, 3, 4, 5]
 
 testeMergeSortOrdenadoPar::Bool
-testeMergeSortOrdenadoPar =mergeSort [2, 4, 6, 8] == [2, 4, 6, 8]
+testeMergeSortOrdenadoPar = mergeSort [2, 4, 6, 8] == [2, 4, 6, 8]
 
 testeMergeSortOrdenadoImpar::Bool
-testeMergeSortOrdenadoImpar =mergeSort [1, 3, 5, 7, 9] == [1, 3, 5, 7, 9]
+testeMergeSortOrdenadoImpar = mergeSort [1, 3, 5, 7, 9] == [1, 3, 5, 7, 9]
 
 -- Listas em ordem reversa
 
 testeMergeSortInverso::Bool
-testeMergeSortInverso =mergeSort [5, 4, 3, 2, 1] == [1, 2, 3, 4, 5]
+testeMergeSortInverso = mergeSort [5, 4, 3, 2, 1] == [1, 2, 3, 4, 5]
 
 testeMergeSortInversoPar::Bool
-testeMergeSortInversoPar =mergeSort [8, 6, 4, 2] == [2, 4, 6, 8]
+testeMergeSortInversoPar = mergeSort [8, 6, 4, 2] == [2, 4, 6, 8]
 
 -- Elementos duplicados
 
 testeMergeSortDuplicados::Bool
-testeMergeSortDuplicados =mergeSort [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] == [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
+testeMergeSortDuplicados = mergeSort [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] == [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
 
 testeMergeSortTodosDuplicados::Bool
-testeMergeSortTodosDuplicados =mergeSort [4, 4, 4, 4] == [4, 4, 4, 4]
+testeMergeSortTodosDuplicados = mergeSort [4, 4, 4, 4] == [4, 4, 4, 4]
 
 testeMergeSortDuplicatasComplexas::Bool
 testeMergeSortDuplicatasComplexas =
@@ -151,7 +151,7 @@ testeMergeSortDuplicatasComplexas =
 -- Números negativos
 
 testeMergeSortNegativos::Bool
-testeMergeSortNegativos =mergeSort [-3,-1,-4,-2,-5] == [-5,-4,-3,-2,-1]
+testeMergeSortNegativos = mergeSort [-3,-1,-4,-2,-5] == [-5,-4,-3,-2,-1]
 
 testeMergeSortMistoSignos::Bool
 testeMergeSortMistoSignos =
@@ -164,7 +164,7 @@ testeMergeSortStrings =
     mergeSort ["delta", "alpha", "gamma", "beta"] == ["alpha", "beta", "delta", "gamma"]
 
 testeMergeSortCaracteres::Bool
-testeMergeSortCaracteres =mergeSort ['z', 'a', 'm', 'c'] == ['a', 'c', 'm', 'z']
+testeMergeSortCaracteres = mergeSort ['z', 'a', 'm', 'c'] == ['a', 'c', 'm', 'z']
 
 testeMergeSortDecimais::Bool
 testeMergeSortDecimais =
@@ -173,7 +173,7 @@ testeMergeSortDecimais =
 -- Casos de tamanho específico
 
 testeMergeSortTamanho4::Bool
-testeMergeSortTamanho4 =mergeSort [4, 2, 3, 1] == [1, 2, 3, 4]
+testeMergeSortTamanho4 = mergeSort [4, 2, 3, 1] == [1, 2, 3, 4]
 
 testeMergeSortTamanho8::Bool
 testeMergeSortTamanho8 =
@@ -205,73 +205,71 @@ testeMergeSortEstabilidade =
 -- Casos básicos
 
 testeInsertionSortVazio::Bool
-testeInsertionSortVazio =insertionSort ([]::[Int]) == []
+testeInsertionSortVazio = insertionSort ([]::[Int]) == []
 
 testeInsertionSortUmElemento::Bool
-testeInsertionSortUmElemento =insertionSort [42] == [42]
+testeInsertionSortUmElemento = insertionSort [42] == [42]
 
 testeInsertionSortDoisElementos::Bool
-testeInsertionSortDoisElementos =insertionSort [20, 10] == [10, 20]
+testeInsertionSortDoisElementos = insertionSort [20, 10] == [10, 20]
 
 testeInsertionSortDoisElementosOrdenados::Bool
-testeInsertionSortDoisElementosOrdenados =insertionSort [10, 20] == [10, 20]
+testeInsertionSortDoisElementosOrdenados = insertionSort [10, 20] == [10, 20]
 
 -- Listas pequenas
 
 testeInsertionSortTresElementos::Bool
-testeInsertionSortTresElementos =insertionSort [3, 1, 2] == [1, 2, 3]
+testeInsertionSortTresElementos = insertionSort [3, 1, 2] == [1, 2, 3]
 
 testeInsertionSortQuatroElementos::Bool
-testeInsertionSortQuatroElementos =insertionSort [4, 2, 3, 1] == [1, 2, 3, 4]
+testeInsertionSortQuatroElementos = insertionSort [4, 2, 3, 1] == [1, 2, 3, 4]
 
 testeInsertionSortCincoElementos::Bool
-testeInsertionSortCincoElementos =insertionSort [5, 2, 4, 1, 3] == [1, 2, 3, 4, 5]
+testeInsertionSortCincoElementos = insertionSort [5, 2, 4, 1, 3] == [1, 2, 3, 4, 5]
 
 -- Listas já ordenadas
 
 testeInsertionSortOrdenado::Bool
-testeInsertionSortOrdenado =insertionSort [1, 2, 3, 4, 5] == [1, 2, 3, 4, 5]
+testeInsertionSortOrdenado = insertionSort [1, 2, 3, 4, 5] == [1, 2, 3, 4, 5]
 
 testeInsertionSortOrdenadoMedio::Bool
 testeInsertionSortOrdenadoMedio =
-insertionSort [1, 3, 5, 7, 9, 11, 13] == [1, 3, 5, 7, 9, 11, 13]
+    insertionSort [1, 3, 5, 7, 9, 11, 13] == [1, 3, 5, 7, 9, 11, 13]
 
 -- Listas em ordem reversa
 
 testeInsertionSortInverso::Bool
-testeInsertionSortInverso =insertionSort [5, 4, 3, 2, 1] == [1, 2, 3, 4, 5]
+testeInsertionSortInverso = insertionSort [5, 4, 3, 2, 1] == [1, 2, 3, 4, 5]
 
 testeInsertionSortInversoGrande::Bool
 testeInsertionSortInversoGrande =
-insertionSort [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    insertionSort [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 -- Elementos duplicados
 
 testeInsertionSortDuplicados::Bool
 testeInsertionSortDuplicados =
-insertionSort [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] == [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
+    insertionSort [3, 1, 4, 1, 5, 9, 2, 6, 5, 3] == [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
 
 testeInsertionSortTodosDuplicados::Bool
-testeInsertionSortTodosDuplicados =
-insertionSort [6, 6, 6, 6, 6] == [6, 6, 6, 6, 6]
+testeInsertionSortTodosDuplicados = insertionSort [6, 6, 6, 6, 6] == [6, 6, 6, 6, 6]
 
 testeInsertionSortDuplicatasParciais::Bool
-testeInsertionSortDuplicatasParciais =
-insertionSort [2, 1, 2, 3, 1, 3] == [1, 1, 2, 2, 3, 3]
+testeInsertionSortDuplicatasParciais = insertionSort [2, 1, 2, 3, 1, 3] == [1, 1, 2, 2, 3, 3]
 
 -- Números negativos
 
 testeInsertionSortNegativos::Bool
 testeInsertionSortNegativos =
-insertionSort [-1,-5,-3,-2,-4] == [-5,-4,-3,-2,-1]
+    insertionSort [-1,-5,-3,-2,-4] == [-5,-4,-3,-2,-1]
 
 testeInsertionSortMistoPositivoNegativo::Bool
 testeInsertionSortMistoPositivoNegativo =
-insertionSort [-1, 3,-2, 0, 1,-3, 2] == [-3,-2,-1, 0, 1, 2, 3]
+    insertionSort [-1, 3,-2, 0, 1,-3, 2] == [-3,-2,-1, 0, 1, 2, 3]
 
 testeInsertionSortComZero::Bool
 testeInsertionSortComZero =
-insertionSort [0,-1, 1,-2, 2] == [-2,-1, 0, 1, 2]
+    insertionSort [0,-1, 1,-2, 2] == [-2,-1, 0, 1, 2]
 
 -- Diferentes tipos de dados
 
@@ -330,9 +328,10 @@ testeConsistenciaVazio =
 
 testeConsistenciaUmElemento::Bool
 testeConsistenciaUmElemento =
-	    let lista = [99]
-        quick = quickSort lista
-        merge = mergeSort listainsertion = insertionSort lista
+        let lista = [99]
+            quick = quickSort lista
+            merge = mergeSort lista
+            insertion = insertionSort lista
     in quick == merge && merge == insertion && quick == lista
 
 testeConsistenciaDuplicados::Bool
@@ -384,19 +383,20 @@ testeConsistenciaCaracteres::Bool
 testeConsistenciaCaracteres =
     let lista = ['h', 'a', 's', 'k', 'e', 'l', 'l']
         quick = quickSort lista
-        merge = mergeSort listainsertion = insertionSort lista
+        merge = mergeSort lista
+        insertion = insertionSort lista
         esperado = ['a', 'e', 'h', 'k', 'l', 'l', 's']
     in quick == esperado && merge == esperado && insertion == esperado
 
 testeConsistenciaValoresExtremos::Bool
 testeConsistenciaValoresExtremos =
-	    let maxInt = 1000000
-        minInt =-1000000
-        lista = [maxInt, 0, minInt, 1,-1, 100,-100]
-        quick = quickSort lista
-        merge = mergeSort lista
-        insertion = insertionSort lista
-        esperado = [minInt,-100,-1, 0, 1, 100, maxInt]
+        let maxInt = 1000000
+            minInt = -1000000
+            lista = [maxInt, 0, minInt, 1,-1, 100,-100]
+            quick = quickSort lista
+            merge = mergeSort lista
+            insertion = insertionSort lista
+            esperado = [minInt,-100,-1, 0, 1, 100, maxInt]
     in quick == esperado && merge == esperado && insertion == esperado
 
 testePropriedadeComprimento::Bool
@@ -431,7 +431,8 @@ testePropriedadeOrdem =
 
 testePropriedadeIdempotencia::Bool
 testePropriedadeIdempotencia =
-    let lista = [5, 2, 8, 1, 9]quick1 = quickSort lista
+    let lista = [5, 2, 8, 1, 9]
+        quick1 = quickSort lista
         quick2 = quickSort quick1
         merge1 = mergeSort lista
         merge2 = mergeSort merge1
@@ -480,7 +481,8 @@ executarTestesOrdenacao = do
     putStrLn $ "Vazio: " ++ show testeMergeSortVazio
     putStrLn $ "Um elemento: " ++ show testeMergeSortUmElemento
     putStrLn $ "Dois elementos: " ++ show testeMergeSortDoisElementos
-    putStrLn $ "Três elementos: " ++ show testeMergeSortTresElementosputStrLn $ "Ordenado: " ++ show testeMergeSortOrdenado
+    putStrLn $ "Três elementos: " ++ show testeMergeSortTresElementos
+    putStrLn $ "Ordenado: " ++ show testeMergeSortOrdenado
     putStrLn $ "Ordenado par: " ++ show testeMergeSortOrdenadoPar
     putStrLn $ "Ordenado ímpar: " ++ show testeMergeSortOrdenadoImpar
     putStrLn $ "Inverso: " ++ show testeMergeSortInverso
@@ -529,7 +531,8 @@ executarTestesOrdenacao = do
     putStrLn $ "Consistência um elemento: " ++ show testeConsistenciaUmElemento
     putStrLn $ "Consistência duplicados: " ++ show testeConsistenciaDuplicados
     putStrLn $ "Consistência negativos: " ++ show testeConsistenciaNegativos
-    putStrLn $ "Consistência strings: " ++ show testeConsistenciaStringsputStrLn $ "Consistência decimais: " ++ show testeConsistenciaDecimais
+    putStrLn $ "Consistência strings: " ++ show testeConsistenciaStrings
+    putStrLn $ "Consistência decimais: " ++ show testeConsistenciaDecimais
     putStrLn $ "Consistência grande: " ++ show testeConsistenciaGrande
     putStrLn $ "Consistência caracteres: " ++ show testeConsistenciaCaracteres
     putStrLn $ "Consistência extremos: " ++ show testeConsistenciaValoresExtremos
@@ -543,94 +546,94 @@ executarTestesOrdenacao = do
 
 testesAlgoritmosOrdenacao::[(String, Bool)]
 testesAlgoritmosOrdenacao = [
-    -- QuickSort (20 testes)
-    ("QuickSort Vazio", testeQuickSortVazio),
-    ("QuickSort Um Elemento", testeQuickSortUmElemento),
-    ("QuickSort Dois Elementos", testeQuickSortDoisElementos),
-    ("QuickSort Três Elementos", testeQuickSortTresElementos),
-    ("QuickSort Ordenado", testeQuickSortOrdenado),
-    ("QuickSort Ordenado Grande", testeQuickSortOrdenadoGrande),
-    ("QuickSort Inverso", testeQuickSortInverso),
-    ("QuickSort Inverso Grande", testeQuickSortInversoGrande),
-    ("QuickSort Duplicados", testeQuickSortDuplicados),
-    ("QuickSort Todos Duplicados", testeQuickSortTodosDuplicados),
-    ("QuickSort Muitas Duplicatas", testeQuickSortMuitasDuplicatas),
-    ("QuickSort Negativos", testeQuickSortNegativos),
-    ("QuickSort Misto +/-", testeQuickSortMistoPositivoNegativo),
-    ("QuickSort Strings", testeQuickSortStrings),
-    ("QuickSort Caracteres", testeQuickSortCaracteres),
-    ("QuickSort Decimais", testeQuickSortDecimais),
-    ("QuickSort Grande", testeQuickSortGrande),
-    ("QuickSort Valores Extremos", testeQuickSortValoresExtremos),
-    ("QuickSort Padrão", testeQuickSortPadrao),
-    ("QuickSort Fibonacci", testeQuickSortFibonacci),
-    
-    -- MergeSort (20 testes)
-    ("MergeSort Vazio", testeMergeSortVazio),
-    ("MergeSort Um Elemento", testeMergeSortUmElemento),
-    ("MergeSort Dois Elementos", testeMergeSortDoisElementos),
-    ("MergeSort Três Elementos", testeMergeSortTresElementos),
-    ("MergeSort Ordenado", testeMergeSortOrdenado),
-    ("MergeSort Ordenado Par", testeMergeSortOrdenadoPar),
-    ("MergeSort Ordenado Ímpar", testeMergeSortOrdenadoImpar),
-    ("MergeSort Inverso", testeMergeSortInverso),
-    ("MergeSort Inverso Par", testeMergeSortInversoPar),
-    ("MergeSort Duplicados", testeMergeSortDuplicados),
-    ("MergeSort Todos Duplicados", testeMergeSortTodosDuplicados),
-    ("MergeSort Duplicatas Complexas", testeMergeSortDuplicatasComplexas),
-    ("MergeSort Negativos", testeMergeSortNegativos),
-    ("MergeSort Misto Sinais", testeMergeSortMistoSignos),
-    ("MergeSort Strings", testeMergeSortStrings),
-    ("MergeSort Caracteres", testeMergeSortCaracteres),
-    ("MergeSort Decimais", testeMergeSortDecimais),
-    ("MergeSort Tamanho 4", testeMergeSortTamanho4),
-    ("MergeSort Tamanho 8", testeMergeSortTamanho8),
-    ("MergeSort Tamanho 16", testeMergeSortTamanho16),
-    ("MergeSort Grande", testeMergeSortGrande),
-    ("MergeSort Estabilidade", testeMergeSortEstabilidade),
-    
-    -- InsertionSort (23 testes)
-    ("InsertionSort Vazio", testeInsertionSortVazio),
-    ("InsertionSort Um Elemento", testeInsertionSortUmElemento),
-    ("InsertionSort Dois Elementos", testeInsertionSortDoisElementos),
-    ("InsertionSort Dois Ordenados", testeInsertionSortDoisElementosOrdenados),
-    ("InsertionSort Três Elementos", testeInsertionSortTresElementos),
-    ("InsertionSort Quatro Elementos", testeInsertionSortQuatroElementos),
-    ("InsertionSort Cinco Elementos", testeInsertionSortCincoElementos),
-    ("InsertionSort Ordenado", testeInsertionSortOrdenado),
-    ("InsertionSort Ordenado Médio", testeInsertionSortOrdenadoMedio),
-    ("InsertionSort Inverso", testeInsertionSortInverso),
-    ("InsertionSort Inverso Grande", testeInsertionSortInversoGrande),
-    ("InsertionSort Duplicados", testeInsertionSortDuplicados),
-    ("InsertionSort Todos Duplicados", testeInsertionSortTodosDuplicados),
-    ("InsertionSort Duplicatas Parciais", testeInsertionSortDuplicatasParciais),
-    ("InsertionSort Negativos", testeInsertionSortNegativos),
-    ("InsertionSort Misto +/-", testeInsertionSortMistoPositivoNegativo),
-    ("InsertionSort Com Zero", testeInsertionSortComZero),
-    ("InsertionSort Strings", testeInsertionSortStrings),
-    ("InsertionSort Caracteres", testeInsertionSortCaracteres),
-    ("InsertionSort Decimais", testeInsertionSortDecimais),
-    ("InsertionSort Melhor Caso", testeInsertionSortMelhorCaso),
-    ("InsertionSort Pior Caso", testeInsertionSortPiorCaso),
-    ("InsertionSort Caso Médio", testeInsertionSortCasoMedio),
-    
-    -- Testes de Consistência (11 testes)
-    ("Consistência 1", testeConsistencia1),
-    ("Consistência 2", testeConsistencia2),
-    ("Consistência Vazio", testeConsistenciaVazio),
-    ("Consistência Um Elemento", testeConsistenciaUmElemento),
-    ("Consistência Duplicados", testeConsistenciaDuplicados),
-    ("Consistência Negativos", testeConsistenciaNegativos),
-    ("Consistência Strings", testeConsistenciaStrings),
-    ("Consistência Decimais", testeConsistenciaDecimais),
-    ("Consistência Grande", testeConsistenciaGrande),
-    ("Consistência Caracteres", testeConsistenciaCaracteres),
-    ("Consistência Extremos", testeConsistenciaValoresExtremos),
-    
-    -- Testes de Propriedades (5 testes)
-    ("Propriedade Comprimento", testePropriedadeComprimento),
-    ("Propriedade Elementos", testePropriedadeElementos),
-    ("Propriedade Ordem", testePropriedadeOrdem),
-    ("Propriedade Idempotência", testePropriedadeIdempotencia),
-    ("Propriedade Lista Vazia", testePropriedadeListaVazia)
-]
+        -- QuickSort (20 testes)
+        ("QuickSort Vazio", testeQuickSortVazio),
+        ("QuickSort Um Elemento", testeQuickSortUmElemento),
+        ("QuickSort Dois Elementos", testeQuickSortDoisElementos),
+        ("QuickSort Três Elementos", testeQuickSortTresElementos),
+        ("QuickSort Ordenado", testeQuickSortOrdenado),
+        ("QuickSort Ordenado Grande", testeQuickSortOrdenadoGrande),
+        ("QuickSort Inverso", testeQuickSortInverso),
+        ("QuickSort Inverso Grande", testeQuickSortInversoGrande),
+        ("QuickSort Duplicados", testeQuickSortDuplicados),
+        ("QuickSort Todos Duplicados", testeQuickSortTodosDuplicados),
+        ("QuickSort Muitas Duplicatas", testeQuickSortMuitasDuplicatas),
+        ("QuickSort Negativos", testeQuickSortNegativos),
+        ("QuickSort Misto +/-", testeQuickSortMistoPositivoNegativo),
+        ("QuickSort Strings", testeQuickSortStrings),
+        ("QuickSort Caracteres", testeQuickSortCaracteres),
+        ("QuickSort Decimais", testeQuickSortDecimais),
+        ("QuickSort Grande", testeQuickSortGrande),
+        ("QuickSort Valores Extremos", testeQuickSortValoresExtremos),
+        ("QuickSort Padrão", testeQuickSortPadrao),
+        ("QuickSort Fibonacci", testeQuickSortFibonacci),
+        
+        -- MergeSort (20 testes)
+        ("MergeSort Vazio", testeMergeSortVazio),
+        ("MergeSort Um Elemento", testeMergeSortUmElemento),
+        ("MergeSort Dois Elementos", testeMergeSortDoisElementos),
+        ("MergeSort Três Elementos", testeMergeSortTresElementos),
+        ("MergeSort Ordenado", testeMergeSortOrdenado),
+        ("MergeSort Ordenado Par", testeMergeSortOrdenadoPar),
+        ("MergeSort Ordenado Ímpar", testeMergeSortOrdenadoImpar),
+        ("MergeSort Inverso", testeMergeSortInverso),
+        ("MergeSort Inverso Par", testeMergeSortInversoPar),
+        ("MergeSort Duplicados", testeMergeSortDuplicados),
+        ("MergeSort Todos Duplicados", testeMergeSortTodosDuplicados),
+        ("MergeSort Duplicatas Complexas", testeMergeSortDuplicatasComplexas),
+        ("MergeSort Negativos", testeMergeSortNegativos),
+        ("MergeSort Misto Sinais", testeMergeSortMistoSignos),
+        ("MergeSort Strings", testeMergeSortStrings),
+        ("MergeSort Caracteres", testeMergeSortCaracteres),
+        ("MergeSort Decimais", testeMergeSortDecimais),
+        ("MergeSort Tamanho 4", testeMergeSortTamanho4),
+        ("MergeSort Tamanho 8", testeMergeSortTamanho8),
+        ("MergeSort Tamanho 16", testeMergeSortTamanho16),
+        ("MergeSort Grande", testeMergeSortGrande),
+        ("MergeSort Estabilidade", testeMergeSortEstabilidade),
+        
+        -- InsertionSort (23 testes)
+        ("InsertionSort Vazio", testeInsertionSortVazio),
+        ("InsertionSort Um Elemento", testeInsertionSortUmElemento),
+        ("InsertionSort Dois Elementos", testeInsertionSortDoisElementos),
+        ("InsertionSort Dois Ordenados", testeInsertionSortDoisElementosOrdenados),
+        ("InsertionSort Três Elementos", testeInsertionSortTresElementos),
+        ("InsertionSort Quatro Elementos", testeInsertionSortQuatroElementos),
+        ("InsertionSort Cinco Elementos", testeInsertionSortCincoElementos),
+        ("InsertionSort Ordenado", testeInsertionSortOrdenado),
+        ("InsertionSort Ordenado Médio", testeInsertionSortOrdenadoMedio),
+        ("InsertionSort Inverso", testeInsertionSortInverso),
+        ("InsertionSort Inverso Grande", testeInsertionSortInversoGrande),
+        ("InsertionSort Duplicados", testeInsertionSortDuplicados),
+        ("InsertionSort Todos Duplicados", testeInsertionSortTodosDuplicados),
+        ("InsertionSort Duplicatas Parciais", testeInsertionSortDuplicatasParciais),
+        ("InsertionSort Negativos", testeInsertionSortNegativos),
+        ("InsertionSort Misto +/-", testeInsertionSortMistoPositivoNegativo),
+        ("InsertionSort Com Zero", testeInsertionSortComZero),
+        ("InsertionSort Strings", testeInsertionSortStrings),
+        ("InsertionSort Caracteres", testeInsertionSortCaracteres),
+        ("InsertionSort Decimais", testeInsertionSortDecimais),
+        ("InsertionSort Melhor Caso", testeInsertionSortMelhorCaso),
+        ("InsertionSort Pior Caso", testeInsertionSortPiorCaso),
+        ("InsertionSort Caso Médio", testeInsertionSortCasoMedio),
+        
+        -- Testes de Consistência (11 testes)
+        ("Consistência 1", testeConsistencia1),
+        ("Consistência 2", testeConsistencia2),
+        ("Consistência Vazio", testeConsistenciaVazio),
+        ("Consistência Um Elemento", testeConsistenciaUmElemento),
+        ("Consistência Duplicados", testeConsistenciaDuplicados),
+        ("Consistência Negativos", testeConsistenciaNegativos),
+        ("Consistência Strings", testeConsistenciaStrings),
+        ("Consistência Decimais", testeConsistenciaDecimais),
+        ("Consistência Grande", testeConsistenciaGrande),
+        ("Consistência Caracteres", testeConsistenciaCaracteres),
+        ("Consistência Extremos", testeConsistenciaValoresExtremos),
+        
+        -- Testes de Propriedades (5 testes)
+        ("Propriedade Comprimento", testePropriedadeComprimento),
+        ("Propriedade Elementos", testePropriedadeElementos),
+        ("Propriedade Ordem", testePropriedadeOrdem),
+        ("Propriedade Idempotência", testePropriedadeIdempotencia),
+        ("Propriedade Lista Vazia", testePropriedadeListaVazia)
+    ]

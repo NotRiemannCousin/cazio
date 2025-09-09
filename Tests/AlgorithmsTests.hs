@@ -31,7 +31,7 @@ testeQuickSortOrdenado =
 testeQuickSortReverso::Bool
 testeQuickSortReverso =
     let lista = [5, 4, 3, 2, 1]
-            esperado = [1, 2, 3, 4, 5]
+        esperado = [1, 2, 3, 4, 5]
     in quickSort lista == esperado
 
 
@@ -39,7 +39,7 @@ testeQuickSortReverso =
 testeQuickSortDuplicados::Bool
 testeQuickSortDuplicados =
     let lista = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
-            esperado = [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
+        esperado = [1, 1, 2, 3, 3, 4, 5, 5, 6, 9]
     in quickSort lista == esperado
 
 
@@ -47,7 +47,7 @@ testeQuickSortDuplicados =
 testeQuickSortNegativos::Bool
 testeQuickSortNegativos =
     let lista = [-5,-1,-10,-3,-7]
-            esperado = [-10,-7,-5,-3,-1]
+        esperado = [-10,-7,-5,-3,-1]
     in quickSort lista == esperado
 
 
@@ -55,7 +55,7 @@ testeQuickSortNegativos =
 testeQuickSortMisturado::Bool
 testeQuickSortMisturado =
     let lista = [-2, 5,-8, 0, 3,-1, 7]
-            esperado = [-8,-2,-1, 0, 3, 5, 7]
+        esperado = [-8,-2,-1, 0, 3, 5, 7]
     in quickSort lista == esperado
 
 
@@ -63,10 +63,12 @@ testeQuickSortMisturado =
 testeQuickSortTodosIguais::Bool
 testeQuickSortTodosIguais =
     let lista = [7, 7, 7, 7, 7]
-        in quickSort lista == lista
-            testeQuickSortGrande::Bool
-        testeQuickSortGrande =
-        let lista = [100, 50, 200, 25, 75, 150, 300]
+    in quickSort lista == lista
+
+
+testeQuickSortGrande::Bool
+testeQuickSortGrande =
+    let lista = [100, 50, 200, 25, 75, 150, 300]
         esperado = [25, 50, 75, 100, 150, 200, 300]
     in quickSort lista == esperado
 
@@ -75,7 +77,7 @@ testeQuickSortTodosIguais =
 testeQuickSortDecimal::Bool
 testeQuickSortDecimal =
     let lista = [3.14, 2.71, 1.41, 1.73, 0.57]
-            esperado = [0.57, 1.41, 1.73, 2.71, 3.14]
+        esperado = [0.57, 1.41, 1.73, 2.71, 3.14]
     in quickSort lista == esperado
 
 -- =================================
@@ -98,7 +100,7 @@ testeMergeSortUmElemento =mergeSort [99] == [99]
 testeMergeSortCompleto::Bool
 testeMergeSortCompleto =
     let lista = [64, 34, 25, 12, 22, 11, 90]
-            resultado = mergeSort lista
+        resultado = mergeSort lista
         esperado = [11, 12, 22, 25, 34, 64, 90]
     in resultado == esperado
 
@@ -114,7 +116,7 @@ testeMergeSortTodosIguais =
 testeMergeSortNegativos::Bool
 testeMergeSortNegativos =
     let lista = [-3,-1,-4,-2,-5]
-            esperado = [-5,-4,-3,-2,-1]
+        esperado = [-5,-4,-3,-2,-1]
     in mergeSort lista == esperado
 
 
@@ -122,7 +124,7 @@ testeMergeSortNegativos =
 testeMergeSortDoisElementos::Bool
 testeMergeSortDoisElementos =
     let lista = [10, 5]
-            esperado = [5, 10]
+        esperado = [5, 10]
     in mergeSort lista == esperado
 
 
@@ -130,11 +132,12 @@ testeMergeSortDoisElementos =
 testeMergeSortParImpar::Bool
 testeMergeSortParImpar =
     let lista = [8, 3, 5, 4, 7, 6, 1, 2]
-            esperado = [1, 2, 3, 4, 5, 6, 7, 8]
+        esperado = [1, 2, 3, 4, 5, 6, 7, 8]
     in mergeSort lista == esperado
-            testeMergeSortStrings::Bool
-        testeMergeSortStrings =
-        let lista = ["zebra", "apple", "banana", "cherry"]
+
+testeMergeSortStrings::Bool
+testeMergeSortStrings =
+    let lista = ["zebra", "apple", "banana", "cherry"]
         esperado = ["apple", "banana", "cherry", "zebra"]
     in mergeSort lista == esperado
 
@@ -150,7 +153,7 @@ testeMergeSortCrescente =
 testeMergeSortDecrescente::Bool
 testeMergeSortDecrescente =
     let lista = [6, 5, 4, 3, 2, 1]
-            esperado = [1, 2, 3, 4, 5, 6]
+        esperado = [1, 2, 3, 4, 5, 6]
     in mergeSort lista == esperado
 
 -- =================================
@@ -173,7 +176,7 @@ testeInsertionSortUmElemento =insertionSort [15] == [15]
 testeInsertionSortCompleto::Bool
 testeInsertionSortCompleto =
     let lista = [64, 34, 25, 12, 22, 11, 90]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [11, 12, 22, 25, 34, 64, 90]
     in resultado == esperado
 
@@ -189,7 +192,7 @@ testeInsertionSortCrescente =
 testeInsertionSortDecimal::Bool
 testeInsertionSortDecimal =
     let lista = [3.14, 2.71, 1.41, 1.73]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [1.41, 1.73, 2.71, 3.14]
     in resultado == esperado
 
@@ -198,7 +201,7 @@ testeInsertionSortDecimal =
 testeInsertionSortDoisElementos::Bool
 testeInsertionSortDoisElementos =
     let lista = [10, 5]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [5, 10]in resultado == esperado
 
 
@@ -206,7 +209,7 @@ testeInsertionSortDoisElementos =
 testeInsertionSortTresElementos::Bool
 testeInsertionSortTresElementos =
     let lista = [30, 10, 20]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [10, 20, 30]
     in resultado == esperado
 
@@ -215,7 +218,7 @@ testeInsertionSortTresElementos =
 testeInsertionSortDuplicados::Bool
 testeInsertionSortDuplicados =
     let lista = [5, 2, 8, 2, 9, 1, 5]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [1, 2, 2, 5, 5, 8, 9]
     in resultado == esperado
 
@@ -224,7 +227,7 @@ testeInsertionSortDuplicados =
 testeInsertionSortNegativos::Bool
 testeInsertionSortNegativos =
     let lista = [-1,-5,-3,-2,-4]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [-5,-4,-3,-2,-1]
     in resultado == esperado
 
@@ -233,7 +236,7 @@ testeInsertionSortNegativos =
 testeInsertionSortMisto::Bool
 testeInsertionSortMisto =
     let lista = [-3, 0, 5,-1, 2]
-            resultado = insertionSort lista
+        resultado = insertionSort lista
         esperado = [-3,-1, 0, 2, 5]
     in resultado == esperado
 
@@ -247,29 +250,29 @@ testeInsertionSortMisto =
 testeConsistenciaAlgoritmos::Bool
 testeConsistenciaAlgoritmos =
     let lista = [7, 2, 9, 1, 5, 3, 8, 4, 6]
-            quick = quickSort lista
+        quick = quickSort lista
         merge = mergeSort lista
-    insertion = insertionSort lista
-        in quick == merge && merge == insertion
+        insertion = insertionSort lista
+    in quick == merge && merge == insertion
 
 
 
 testeConsistenciaVazio::Bool
 testeConsistenciaVazio =
     let lista = []
-            quick = quickSort lista
+        quick = quickSort lista
         merge = mergeSort lista
-    insertion = insertionSort lista
-        in quick == merge && merge == insertion && quick == ([]::[Int])
+        insertion = insertionSort lista
+    in quick == merge && merge == insertion && quick == ([]::[Int])
 
 
 
 testeConsistenciaUmElemento::Bool
 testeConsistenciaUmElemento =
     let lista = [42]
-            quick = quickSort lista
+        quick = quickSort lista
         merge = mergeSort lista
-    insertion = insertionSort lista
+        insertion = insertionSort lista
         in quick == merge && merge == insertion && quick == lista
 
 
@@ -277,20 +280,20 @@ testeConsistenciaUmElemento =
 testeConsistenciaNegativos::Bool
 testeConsistenciaNegativos =
     let lista = [-10, 5,-3, 8,-1]
-            quick = quickSort lista
+        quick = quickSort lista
         merge = mergeSort lista
-    insertion = insertionSort lista
-        in quick == merge && merge == insertion
+        insertion = insertionSort lista
+    in quick == merge && merge == insertion
 
 
 
 testeConsistenciaDuplicados::Bool
 testeConsistenciaDuplicados =
     let lista = [3, 1, 1, 3, 2, 2]
-            quick = quickSort lista
+        quick = quickSort lista
         merge = mergeSort lista
-    insertion = insertionSort lista
-            esperado = [1, 1, 2, 2, 3, 3]
+        insertion = insertionSort lista
+        esperado = [1, 1, 2, 2, 3, 3]
     in quick == esperado && merge == esperado && insertion == esperado
 
 -- =================================
@@ -305,12 +308,12 @@ testeBuscarProjetoExistente =
     let projeto1 = Projeto 1 "Projeto A" Civil Planejamento [] [] [] [] []
             (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Projeto B" Mecanica EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 2 1) Nothing 75000
+            (fromGregorian 2025 2 1) Nothing 75000
         projetos = [projeto1, projeto2]
         resultado = buscarProjeto 1 projetos
     in case resultado of
-            Just p-> idProjeto p == 1 && nomeProjeto p == "Projeto A"
-        Nothing-> False
+        Just p  -> idProjeto p == 1 && nomeProjeto p == "Projeto A"
+        Nothing -> False
 
 
 
@@ -327,41 +330,42 @@ testeBuscarProjetoInexistente =
 testeBuscarProjetoListaVazia::Bool
 testeBuscarProjetoListaVazia =
     let projetos = []
-            resultado = buscarProjeto 1 projetos
+        resultado = buscarProjeto 1 projetos
     in resultado == Nothing
-            testeBuscarProjetoPrimeiro::Bool
-        testeBuscarProjetoPrimeiro =
-        let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 i) Nothing (fromIntegral i * 1000)
-        | i <- [1..10]]
+
+testeBuscarProjetoPrimeiro::Bool
+testeBuscarProjetoPrimeiro =
+    let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
+                        (fromGregorian 2025 1 i) Nothing (fromIntegral i * 1000)
+                    | i <- [1..10]]
         resultado = buscarProjeto 1 projetos
     in case resultado of
-            Just p-> idProjeto p == 1 && nomeProjeto p == "Projeto 1"
-        Nothing-> False
+        Just p  -> idProjeto p == 1 && nomeProjeto p == "Projeto 1"
+        Nothing -> False
 
 
 
 testeBuscarProjetoUltimo::Bool
 testeBuscarProjetoUltimo =
     let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
-            (fromGregorian 2025 1 1) Nothing (fromIntegral i * 1000)
-        | i <- [1..10]]
+                        (fromGregorian 2025 1 1) Nothing (fromIntegral i * 1000)
+                    | i <- [1..10]]
         resultado = buscarProjeto 10 projetos
     in case resultado of
-            Just p-> idProjeto p == 10 && nomeProjeto p == "Projeto 10"
-        Nothing-> False
+        Just p  -> idProjeto p == 10 && nomeProjeto p == "Projeto 10"
+        Nothing -> False
 
 
 
 testeBuscarProjetoMeio::Bool
 testeBuscarProjetoMeio =
     let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
-            (fromGregorian 2025 1 1) Nothing (fromIntegral i * 1000)
-        | i <- [1..10]]
+                        (fromGregorian 2025 1 1) Nothing (fromIntegral i * 1000)
+                    | i <- [1..10]]
         resultado = buscarProjeto 5 projetos
     in case resultado of
-            Just p-> idProjeto p == 5
-        Nothing-> False
+        Just p  -> idProjeto p == 5
+        Nothing -> False
 
 
 
@@ -370,12 +374,12 @@ testeBuscarProjetoTipoEspecifico =
     let projeto1 = Projeto 1 "Civil A" Civil Planejamento [] [] [] [] []
             (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Mecanica B" Mecanica EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 60000
+            (fromGregorian 2025 1 1) Nothing 60000
         projetos = [projeto1, projeto2]
         resultado = buscarProjeto 2 projetos
     in case resultado of
-            Just p-> tipoProjeto p == Mecanica
-        Nothing-> False
+        Just p  -> tipoProjeto p == Mecanica
+        Nothing -> False
 
 
 
@@ -386,17 +390,19 @@ testeBuscarProjetoStatusEspecifico =
         projetos = [projeto]
         resultado = buscarProjeto 100 projetos
     in case resultado of
-            Just p-> status p == Concluido
-        Nothing-> False
-        testeBuscarProjetoOrcamento::Bool
-        testeBuscarProjetoOrcamento =
-        let projeto = Projeto 50 "Projeto Caro" Estrutural EmRevisao [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 999999
+        Just p  -> status p == Concluido
+        Nothing -> False
+
+
+testeBuscarProjetoOrcamento::Bool
+testeBuscarProjetoOrcamento =
+    let projeto = Projeto 50 "Projeto Caro" Estrutural EmRevisao [] [] [] [] []
+            (fromGregorian 2025 1 1) Nothing 999999
         projetos = [projeto]
         resultado = buscarProjeto 50 projetos
     in case resultado of
-            Just p-> orcamento p == 999999
-        Nothing-> False
+        Just p  -> orcamento p == 999999
+        Nothing -> False
 
 
 
@@ -406,11 +412,11 @@ testeBuscarProjetoComDuplicataId =
     let projeto1 = Projeto 5 "Primeiro" Civil Planejamento [] [] [] [] []
             (fromGregorian 2025 1 1) Nothing 10000
         projeto2 = Projeto 5 "Segundo" Mecanica EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 20000
+            (fromGregorian 2025 1 1) Nothing 20000
         projetos = [projeto1, projeto2]
         resultado = buscarProjeto 5 projetos
     in case resultado of
-            Just p -> nomeProjeto p == "Primeiro" -- deve retornar o primeiro encontrado
+        Just p -> nomeProjeto p == "Primeiro" -- deve retornar o primeiro encontrado
         Nothing -> False
 
 -- =================================
@@ -423,7 +429,7 @@ testeBuscarProjetoComDuplicataId =
 testeInserirOrdenadoMeio::Bool
 testeInserirOrdenadoMeio =
     let lista = [1, 3, 5, 7, 9]
-            resultado = inserirOrdenado 4 lista
+        resultado = inserirOrdenado 4 lista
         esperado = [1, 3, 4, 5, 7, 9]
     in resultado == esperado
 
@@ -432,7 +438,7 @@ testeInserirOrdenadoMeio =
 testeInserirOrdenadoInicio::Bool
 testeInserirOrdenadoInicio =
     let lista = [2, 4, 6, 8]
-            resultado = inserirOrdenado 1 lista
+        resultado = inserirOrdenado 1 lista
         esperado = [1, 2, 4, 6, 8]
     in resultado == esperado
 
@@ -441,7 +447,7 @@ testeInserirOrdenadoInicio =
 testeInserirOrdenadoFim::Bool
 testeInserirOrdenadoFim =
     let lista = [1, 3, 5, 7]
-            resultado = inserirOrdenado 9 lista
+        resultado = inserirOrdenado 9 lista
         esperado = [1, 3, 5, 7, 9]
     in resultado == esperado
 
@@ -449,8 +455,9 @@ testeInserirOrdenadoFim =
 
 testeInserirOrdenadoVazio::Bool
 testeInserirOrdenadoVazio =
-    let lista = []resultado = inserirOrdenado 5 lista
-            esperado = [5]
+    let lista = []
+        resultado = inserirOrdenado 5 lista
+        esperado = [5]
     in resultado == esperado
 
 
@@ -458,7 +465,7 @@ testeInserirOrdenadoVazio =
 testeInserirOrdenadoDuplicado::Bool
 testeInserirOrdenadoDuplicado =
     let lista = [1, 3, 5, 7]
-            resultado = inserirOrdenado 5 lista
+        resultado = inserirOrdenado 5 lista
     in length resultado == length lista + 1 && elem 5 resultado
 
 
@@ -466,7 +473,7 @@ testeInserirOrdenadoDuplicado =
 testeInserirOrdenadoNegativo::Bool
 testeInserirOrdenadoNegativo =
     let lista = [-5,-3,-1, 2, 4]
-            resultado = inserirOrdenado (-2) lista
+        resultado = inserirOrdenado (-2) lista
         esperado = [-5,-3,-2,-1, 2, 4]
     in resultado == esperado
 
@@ -475,7 +482,7 @@ testeInserirOrdenadoNegativo =
 testeInserirOrdenadoTodosNegativos::Bool
 testeInserirOrdenadoTodosNegativos =
     let lista = [-10,-8,-5,-2]
-            resultado = inserirOrdenado (-6) lista
+        resultado = inserirOrdenado (-6) lista
         esperado = [-10,-8,-6,-5,-2]
     in resultado == esperado
 
@@ -484,7 +491,7 @@ testeInserirOrdenadoTodosNegativos =
 testeInserirOrdenadoDecimal::Bool
 testeInserirOrdenadoDecimal =
     let lista = [1.1, 2.2, 3.3, 4.4]
-            resultado = inserirOrdenado 2.7 lista
+        resultado = inserirOrdenado 2.7 lista
         esperado = [1.1, 2.2, 2.7, 3.3, 4.4]
     in resultado == esperado
 
@@ -493,7 +500,7 @@ testeInserirOrdenadoDecimal =
 testeInserirOrdenadoUmElemento::Bool
 testeInserirOrdenadoUmElemento =
     let lista = [10]
-            resultadoMenor = inserirOrdenado 5 lista
+        resultadoMenor = inserirOrdenado 5 lista
         resultadoMaior = inserirOrdenado 15 lista
     in resultadoMenor == [5, 10] && resultadoMaior == [10, 15]
 
@@ -502,7 +509,7 @@ testeInserirOrdenadoUmElemento =
 testeInserirOrdenadoString::Bool
 testeInserirOrdenadoString =
     let lista = ["apple", "cherry", "orange"]
-            resultado = inserirOrdenado "banana" lista
+        resultado = inserirOrdenado "banana" lista
         esperado = ["apple", "banana", "cherry", "orange"]
     in resultado == esperado
 
@@ -516,8 +523,9 @@ testeInserirOrdenadoString =
 testeConstruirArvoreVazia::Bool
 testeConstruirArvoreVazia =
     construirArvore [] == (Vazia::ArvoreBinaria Int)
-    testeConstruirArvoreUmElemento::Bool
-    testeConstruirArvoreUmElemento =
+
+testeConstruirArvoreUmElemento::Bool
+testeConstruirArvoreUmElemento =
     construirArvore [5] == No 5 Vazia Vazia
 
 
@@ -525,7 +533,7 @@ testeConstruirArvoreVazia =
 testeConstruirArvoreOrdenada::Bool
 testeConstruirArvoreOrdenada =
     let lista = [1, 2, 3, 4, 5]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -533,7 +541,7 @@ testeConstruirArvoreOrdenada =
 testeConstruirArvoreDesordenada::Bool
 testeConstruirArvoreDesordenada =
     let lista = [3, 1, 4, 1, 5, 9, 2, 6]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -541,7 +549,7 @@ testeConstruirArvoreDesordenada =
 testeConstruirArvoreStrings::Bool
 testeConstruirArvoreStrings =
     let lista = ["banana", "apple", "cherry"]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -549,7 +557,7 @@ testeConstruirArvoreStrings =
 testeConstruirArvoreNegativos::Bool
 testeConstruirArvoreNegativos =
     let lista = [-5,-2,-8,-1,-10]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -557,7 +565,7 @@ testeConstruirArvoreNegativos =
 testeConstruirArvoreDuplicados::Bool
 testeConstruirArvoreDuplicados =
     let lista = [5, 3, 5, 1, 3, 7]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -565,7 +573,7 @@ testeConstruirArvoreDuplicados =
 testeConstruirArvoreDecimal::Bool
 testeConstruirArvoreDecimal =
     let lista = [3.14, 2.71, 1.41, 1.73]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -573,7 +581,7 @@ testeConstruirArvoreDecimal =
 testeConstruirArvoreGrande::Bool
 testeConstruirArvoreGrande =
     let lista = [1..20]
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -581,7 +589,7 @@ testeConstruirArvoreGrande =
 testeConstruirArvoreCaracteres::Bool
 testeConstruirArvoreCaracteres =
     let lista = ['m', 'a', 't', 'e', 'm', 'a', 't', 'i', 'c', 'a']
-            arvore = construirArvore lista
+        arvore = construirArvore lista
     in arvore /= Vazia
 
 
@@ -613,21 +621,21 @@ testeBuscarArvoreVazia =
 testeBuscarArvoreRaiz::Bool
 testeBuscarArvoreRaiz =
     let arvore = construirArvore [10, 5, 15, 3, 7, 12, 18]
-        in buscarArvore 10 arvore
+    in buscarArvore 10 arvore
 
 
 
 testeBuscarArvoreFolha::Bool
 testeBuscarArvoreFolha =
     let arvore = construirArvore [10, 5, 15]
-        in buscarArvore 5 arvore && buscarArvore 15 arvore
+    in buscarArvore 5 arvore && buscarArvore 15 arvore
 
 
 
 testeBuscarArvoreNegativos::Bool
 testeBuscarArvoreNegativos =
     let arvore = construirArvore [-10,-5,-15,-3,-7]
-        in buscarArvore (-5) arvore && not (buscarArvore 0 arvore)
+    in buscarArvore (-5) arvore && not (buscarArvore 0 arvore)
 
 
 
@@ -654,8 +662,9 @@ testeBuscarArvoreUmElemento =
 
 testeBuscarArvoreCompleta::Bool
 testeBuscarArvoreCompleta =
-    let lista = [1..15]arvore = construirArvore lista
-            todosPresentse = all (\x-> buscarArvore x arvore) lista
+    let lista = [1..15]
+        arvore = construirArvore lista
+        todosPresentes = all (\x-> buscarArvore x arvore) lista
         nenhumAusente = not (any (\x-> buscarArvore x arvore) [16..20])
     in todosPresentes && nenhumAusente
 
@@ -668,9 +677,9 @@ testeFiltrarProjetosTipo =
     let projeto1 = Projeto 1 "A" Civil Concluido [] [] [] [] []
             (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "B" Civil EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 2 1) Nothing 60000
+            (fromGregorian 2025 2 1) Nothing 60000
         projeto3 = Projeto 3 "C" Mecanica Concluido [] [] [] [] []
-        (fromGregorian 2025 3 1) Nothing 70000
+            (fromGregorian 2025 3 1) Nothing 70000
         projetos = [projeto1, projeto2, projeto3]
         filtroTipo = filtrarProjetos (\p-> tipoProjeto p == Civil) projetos
     in length filtroTipo == 2
@@ -682,9 +691,9 @@ testeFiltrarProjetosStatus =
     let projeto1 = Projeto 1 "A" Civil Concluido [] [] [] [] []
             (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "B" Civil EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 2 1) Nothing 60000
+            (fromGregorian 2025 2 1) Nothing 60000
         projeto3 = Projeto 3 "C" Mecanica Concluido [] [] [] [] []
-        (fromGregorian 2025 3 1) Nothing 70000
+            (fromGregorian 2025 3 1) Nothing 70000
         projetos = [projeto1, projeto2, projeto3]
         filtroStatus = filtrarProjetos (\p-> status p == Concluido) projetos
     in length filtroStatus == 2
@@ -694,8 +703,8 @@ testeFiltrarProjetosStatus =
 testeFiltrarProjetosOrcamento::Bool
 testeFiltrarProjetosOrcamento =
     let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
-            (fromGregorian 2025 1 1) Nothing (fromIntegral i * 10000)
-        | i <- [1..10]]
+                        (fromGregorian 2025 1 1) Nothing (fromIntegral i * 10000)
+                    | i <- [1..10]]
         filtroOrcamento = filtrarProjetos (\p-> orcamento p > 50000) projetos
     in length filtroOrcamento == 5 -- projetos 6,7,8,9,10
 
@@ -704,7 +713,7 @@ testeFiltrarProjetosOrcamento =
 testeFiltrarProjetosVazio::Bool
 testeFiltrarProjetosVazio =
     let projetos = []
-            resultado = filtrarProjetos (\p-> tipoProjeto p == Civil) projetos
+        resultado = filtrarProjetos (\p-> tipoProjeto p == Civil) projetos
     in null resultado
 
 
@@ -712,8 +721,9 @@ testeFiltrarProjetosVazio =
 testeFiltrarProjetosNenhumAtende::Bool
 testeFiltrarProjetosNenhumAtende =
     let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
-            (fromGregorian 2025 1 1) Nothing 10000
-        | i <- [1..5]]resultado = filtrarProjetos (\p-> orcamento p > 100000) projetos
+                        (fromGregorian 2025 1 1) Nothing 10000
+                    | i <- [1..5]]
+        resultado = filtrarProjetos (\p-> orcamento p > 100000) projetos
     in null resultado
 
 
@@ -721,8 +731,8 @@ testeFiltrarProjetosNenhumAtende =
 testeFiltrarProjetosTodosAtendem::Bool
 testeFiltrarProjetosTodosAtendem =
     let projetos = [Projeto i ("Projeto " ++ show i) Civil Planejamento [] [] [] [] []
-            (fromGregorian 2025 1 1) Nothing 10000
-        | i <- [1..5]]
+                        (fromGregorian 2025 1 1) Nothing 10000
+                    | i <- [1..5]]
         resultado = filtrarProjetos (\p-> orcamento p > 0) projetos
     in length resultado == 5
 
@@ -733,9 +743,9 @@ testeFiltrarProjetosNome =
     let projeto1 = Projeto 1 "Projeto Especial" Civil Planejamento [] [] [] [] []
             (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Outro Projeto" Mecanica EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 60000
+            (fromGregorian 2025 1 1) Nothing 60000
         projeto3 = Projeto 3 "Projeto Normal" Civil Concluido [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 70000
+            (fromGregorian 2025 1 1) Nothing 70000
         projetos = [projeto1, projeto2, projeto3]
         resultado = filtrarProjetos (\p-> "Projeto" `elem` words (nomeProjeto p)) projetos
     in length resultado == 3 -- todos contêm "Projeto"
@@ -745,15 +755,13 @@ testeFiltrarProjetosNome =
 testeFiltrarProjetosComposicao::Bool
 testeFiltrarProjetosComposicao =
     let projetos = [Projeto i ("Projeto " ++ show i) tipo status [] [] [] [] []
-            (fromGregorian 2025 1 1) Nothing (fromIntegral i * 10000)
-        | i <- [1..10]
-        ,
-        let tipo = if even i then Civil else Mecanica
-        ,
-        let status = if i <= 5 then Planejamento else Concluido] -- Filtrar projetos Civil E Concluído E orçamento > 60000
+                        (fromGregorian 2025 1 1) Nothing (fromIntegral i * 10000)
+                    | i <- [1..10]
+                    , let tipo = if even i then Civil else Mecanica
+                    , let status = if i <= 5 then Planejamento else Concluido] -- Filtrar projetos Civil E Concluído E orçamento > 60000
         resultado = filtrarProjetos (\p-> tipoProjeto p == Civil &&
-        status p == Concluido &&
-        orcamento p > 60000) projetos
+            status p == Concluido &&
+            orcamento p > 60000) projetos
     in length resultado == 2 -- projetos 8 e 10
 
 
@@ -763,9 +771,9 @@ testeFiltrarProjetosData =
     let projeto1 = Projeto 1 "A" Civil Planejamento [] [] [] [] []
             (fromGregorian 2025 1 15) Nothing 50000
         projeto2 = Projeto 2 "B" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 2 15) Nothing 60000
+            (fromGregorian 2025 2 15) Nothing 60000
         projeto3 = Projeto 3 "C" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 3 15) Nothing 70000
+            (fromGregorian 2025 3 15) Nothing 70000
         projetos = [projeto1, projeto2, projeto3]
         dataLimite = fromGregorian 2025 2 1
         resultado = filtrarProjetos (\p-> dataInicio p >= dataLimite) projetos
@@ -816,7 +824,8 @@ executarTestesEspecialista4 = do
     putStrLn $ "Um elemento: " ++ show testeConsistenciaUmElemento
     putStrLn $ "Negativos: " ++ show testeConsistenciaNegativos
     putStrLn $ "Duplicados: " ++ show testeConsistenciaDuplicados
-    putStrLn "\n -- TESTES BUSCAR PROJETO --"putStrLn $ "Existente: " ++ show testeBuscarProjetoExistente
+    putStrLn "\n -- TESTES BUSCAR PROJETO --"
+    putStrLn $ "Existente: " ++ show testeBuscarProjetoExistente
     putStrLn $ "Inexistente: " ++ show testeBuscarProjetoInexistente
     putStrLn $ "Lista vazia: " ++ show testeBuscarProjetoListaVazia
     putStrLn $ "Primeiro: " ++ show testeBuscarProjetoPrimeiro
@@ -863,7 +872,8 @@ executarTestesEspecialista4 = do
     putStrLn $ "Tipo: " ++ show testeFiltrarProjetosTipo
     putStrLn $ "Status: " ++ show testeFiltrarProjetosStatus
     putStrLn $ "Orçamento: " ++ show testeFiltrarProjetosOrcamento
-    putStrLn $ "Vazio: " ++ show testeFiltrarProjetosVazioputStrLn $ "Nenhum atende: " ++ show testeFiltrarProjetosNenhumAtende
+    putStrLn $ "Vazio: " ++ show testeFiltrarProjetosVazio
+    putStrLn $ "Nenhum atende: " ++ show testeFiltrarProjetosNenhumAtende
     putStrLn $ "Todos atendem: " ++ show testeFiltrarProjetosTodosAtendem
     putStrLn $ "Nome: " ++ show testeFiltrarProjetosNome
     putStrLn $ "Composição: " ++ show testeFiltrarProjetosComposicao
@@ -872,81 +882,81 @@ executarTestesEspecialista4 = do
 
 testesEspecialista4::[(String, Bool)]
 testesEspecialista4 = [
-    -- QuickSort
-    ("QuickSort Vazio", testeQuickSortVazio),
-    ("QuickSort Um Elemento", testeQuickSortUmElemento),
-    ("QuickSort Ordenado", testeQuickSortOrdenado),
-    ("QuickSort Reverso", testeQuickSortReverso),
-    ("QuickSort Duplicados", testeQuickSortDuplicados),
-    ("QuickSort Negativos", testeQuickSortNegativos),
-    ("QuickSort Misturado", testeQuickSortMisturado),
-    ("QuickSort Todos Iguais", testeQuickSortTodosIguais),
-    ("QuickSort Grande", testeQuickSortGrande),
-    ("QuickSort Decimal", testeQuickSortDecimal),
+        -- QuickSort
+        ("QuickSort Vazio", testeQuickSortVazio),
+        ("QuickSort Um Elemento", testeQuickSortUmElemento),
+        ("QuickSort Ordenado", testeQuickSortOrdenado),
+        ("QuickSort Reverso", testeQuickSortReverso),
+        ("QuickSort Duplicados", testeQuickSortDuplicados),
+        ("QuickSort Negativos", testeQuickSortNegativos),
+        ("QuickSort Misturado", testeQuickSortMisturado),
+        ("QuickSort Todos Iguais", testeQuickSortTodosIguais),
+        ("QuickSort Grande", testeQuickSortGrande),
+        ("QuickSort Decimal", testeQuickSortDecimal),
 
-    -- MergeSort
-    ("MergeSort Vazio", testeMergeSortVazio),
-    ("MergeSort Um Elemento", testeMergeSortUmElemento),
-    ("MergeSort Completo", testeMergeSortCompleto),
-    ("MergeSort Todos Iguais", testeMergeSortTodosIguais),
-    ("MergeSort Negativos", testeMergeSortNegativos),
-    ("MergeSort Dois Elementos", testeMergeSortDoisElementos),
-    ("MergeSort Par/Ímpar", testeMergeSortParImpar),
-    ("MergeSort Strings", testeMergeSortStrings),
-    ("MergeSort Crescente", testeMergeSortCrescente),
-    ("MergeSort Decrescente", testeMergeSortDecrescente),
+        -- MergeSort
+        ("MergeSort Vazio", testeMergeSortVazio),
+        ("MergeSort Um Elemento", testeMergeSortUmElemento),
+        ("MergeSort Completo", testeMergeSortCompleto),
+        ("MergeSort Todos Iguais", testeMergeSortTodosIguais),
+        ("MergeSort Negativos", testeMergeSortNegativos),
+        ("MergeSort Dois Elementos", testeMergeSortDoisElementos),
+        ("MergeSort Par/Ímpar", testeMergeSortParImpar),
+        ("MergeSort Strings", testeMergeSortStrings),
+        ("MergeSort Crescente", testeMergeSortCrescente),
+        ("MergeSort Decrescente", testeMergeSortDecrescente),
 
-    -- InsertionSort
-    ("InsertionSort Vazio", testeInsertionSortVazio),
-    ("InsertionSort Um Elemento", testeInsertionSortUmElemento),
-    ("InsertionSort Completo", testeInsertionSortCompleto),
-    ("InsertionSort Crescente", testeInsertionSortCrescente),
-    ("InsertionSort Decimal", testeInsertionSortDecimal),
-    ("InsertionSort Dois Elementos", testeInsertionSortDoisElementos),
-    ("InsertionSort Três Elementos", testeInsertionSortTresElementos),
-    ("InsertionSort Duplicados", testeInsertionSortDuplicados),
-    ("InsertionSort Negativos", testeInsertionSortNegativos),
-    ("InsertionSort Misto", testeInsertionSortMisto),
+        -- InsertionSort
+        ("InsertionSort Vazio", testeInsertionSortVazio),
+        ("InsertionSort Um Elemento", testeInsertionSortUmElemento),
+        ("InsertionSort Completo", testeInsertionSortCompleto),
+        ("InsertionSort Crescente", testeInsertionSortCrescente),
+        ("InsertionSort Decimal", testeInsertionSortDecimal),
+        ("InsertionSort Dois Elementos", testeInsertionSortDoisElementos),
+        ("InsertionSort Três Elementos", testeInsertionSortTresElementos),
+        ("InsertionSort Duplicados", testeInsertionSortDuplicados),
+        ("InsertionSort Negativos", testeInsertionSortNegativos),
+        ("InsertionSort Misto", testeInsertionSortMisto),
 
-    -- Consistência
-    ("Consistência Algoritmos", testeConsistenciaAlgoritmos),
-    ("Consistência Vazio", testeConsistenciaVazio),
-    ("Consistência Um Elemento", testeConsistenciaUmElemento),
-    ("Consistência Negativos", testeConsistenciaNegativos),
-    ("Consistência Duplicados", testeConsistenciaDuplicados),
+        -- Consistência
+        ("Consistência Algoritmos", testeConsistenciaAlgoritmos),
+        ("Consistência Vazio", testeConsistenciaVazio),
+        ("Consistência Um Elemento", testeConsistenciaUmElemento),
+        ("Consistência Negativos", testeConsistenciaNegativos),
+        ("Consistência Duplicados", testeConsistenciaDuplicados),
 
-    -- Buscar Projeto
-    ("Buscar Projeto Existente", testeBuscarProjetoExistente),
-    ("Buscar Projeto Inexistente", testeBuscarProjetoInexistente),
-    ("Buscar Projeto Lista Vazia", testeBuscarProjetoListaVazia),
-    ("Buscar Projeto Primeiro", testeBuscarProjetoPrimeiro),
-    ("Buscar Projeto Último", testeBuscarProjetoUltimo),
+        -- Buscar Projeto
+        ("Buscar Projeto Existente", testeBuscarProjetoExistente),
+        ("Buscar Projeto Inexistente", testeBuscarProjetoInexistente),
+        ("Buscar Projeto Lista Vazia", testeBuscarProjetoListaVazia),
+        ("Buscar Projeto Primeiro", testeBuscarProjetoPrimeiro),
+        ("Buscar Projeto Último", testeBuscarProjetoUltimo),
 
-    -- Inserir Ordenado
-    ("Inserir Ordenado Meio", testeInserirOrdenadoMeio),
-    ("Inserir Ordenado Início", testeInserirOrdenadoInicio),
-    ("Inserir Ordenado Fim", testeInserirOrdenadoFim),
-    ("Inserir Ordenado Vazio", testeInserirOrdenadoVazio),
-    ("Inserir Ordenado Duplicado", testeInserirOrdenadoDuplicado),
+        -- Inserir Ordenado
+        ("Inserir Ordenado Meio", testeInserirOrdenadoMeio),
+        ("Inserir Ordenado Início", testeInserirOrdenadoInicio),
+        ("Inserir Ordenado Fim", testeInserirOrdenadoFim),
+        ("Inserir Ordenado Vazio", testeInserirOrdenadoVazio),
+        ("Inserir Ordenado Duplicado", testeInserirOrdenadoDuplicado),
 
-    -- Construir árvore
-    ("Construir Árvore Vazia", testeConstruirArvoreVazia),
-    ("Construir Árvore Um Elemento", testeConstruirArvoreUmElemento),
-    ("Construir Árvore Ordenada", testeConstruirArvoreOrdenada),
-    ("Construir Árvore Desordenada", testeConstruirArvoreDesordenada),
-    ("Construir Árvore Strings", testeConstruirArvoreStrings),
+        -- Construir árvore
+        ("Construir Árvore Vazia", testeConstruirArvoreVazia),
+        ("Construir Árvore Um Elemento", testeConstruirArvoreUmElemento),
+        ("Construir Árvore Ordenada", testeConstruirArvoreOrdenada),
+        ("Construir Árvore Desordenada", testeConstruirArvoreDesordenada),
+        ("Construir Árvore Strings", testeConstruirArvoreStrings),
 
-    -- Buscar árvore
-    ("Buscar Árvore Elemento Existe", testeBuscarArvoreElementoExiste),
-    ("Buscar Árvore Elemento Não Existe", testeBuscarArvoreElementoNaoExiste),
-    ("Buscar Árvore Vazia", testeBuscarArvoreVazia),
-    ("Buscar Árvore Raiz", testeBuscarArvoreRaiz),
-    ("Buscar Árvore Folha", testeBuscarArvoreFolha),
+        -- Buscar árvore
+        ("Buscar Árvore Elemento Existe", testeBuscarArvoreElementoExiste),
+        ("Buscar Árvore Elemento Não Existe", testeBuscarArvoreElementoNaoExiste),
+        ("Buscar Árvore Vazia", testeBuscarArvoreVazia),
+        ("Buscar Árvore Raiz", testeBuscarArvoreRaiz),
+        ("Buscar Árvore Folha", testeBuscarArvoreFolha),
 
-    -- Filtrar Projetos
-    ("Filtrar Projetos Tipo", testeFiltrarProjetosTipo),
-    ("Filtrar Projetos Status", testeFiltrarProjetosStatus),
-    ("Filtrar Projetos Orçamento", testeFiltrarProjetosOrcamento),
-    ("Filtrar Projetos Vazio", testeFiltrarProjetosVazio),
-    ("Filtrar Projetos Nenhum Atende", testeFiltrarProjetosNenhumAtende)
-]
+        -- Filtrar Projetos
+        ("Filtrar Projetos Tipo", testeFiltrarProjetosTipo),
+        ("Filtrar Projetos Status", testeFiltrarProjetosStatus),
+        ("Filtrar Projetos Orçamento", testeFiltrarProjetosOrcamento),
+        ("Filtrar Projetos Vazio", testeFiltrarProjetosVazio),
+        ("Filtrar Projetos Nenhum Atende", testeFiltrarProjetosNenhumAtende)
+    ]
