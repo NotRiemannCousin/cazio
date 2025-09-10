@@ -17,7 +17,7 @@ avaliarFuncao (Funcao (Linear a b) _)              x = a*x + b           -- ax +
 avaliarFuncao (Funcao (Quadratica a b c) _)        x = a*x^2 + b*x + c   -- ax² + bx + c
 avaliarFuncao (Funcao (Exponencial a b) _)         x = a*exp(b*x)        -- a * e^(bx)
 avaliarFuncao (Funcao (Logaritmica a b) _)         x = a*ln(b*x)         -- a * ln(bx)
-avaliarFuncao (Funcao (Trigonometrica tipo a b) _) x = a*func(b*x) -- a * func(bx)
+avaliarFuncao (Funcao (Trigonometrica tipo a b) _) x = a*func(x) + b -- a * func(bx)
     where
         func = case tipo of
             Seno      -> sin
