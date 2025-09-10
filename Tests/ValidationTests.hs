@@ -14,15 +14,15 @@ import qualified Data.Map as Map
 testeValidarProjetoValido::Bool
 testeValidarProjetoValido =
     let projeto = Projeto 1 "Projeto Válido" Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 100] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+                [Material "Concreto" 2400 30e6 350 100] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         erros = validarProjeto projeto
     in null erros
 
 testeValidarProjetoNomeVazio::Bool
 testeValidarProjetoNomeVazio =
     let projeto = Projeto 1 "" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         erros = validarProjeto projeto
     in not (null erros) && any (isInfixOf "nome") (map toLower erros)
     where
@@ -37,22 +37,22 @@ testeValidarProjetoNomeVazio =
 testeValidarProjetoOrcamentoNegativo::Bool
 testeValidarProjetoOrcamentoNegativo =
     let projeto = Projeto 1 "Projeto" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing (-1000)
+            (fromGregorian 2025 1 1) Nothing (-1000)
         erros = validarProjeto projeto
     in not (null erros) && length erros >= 1
 
 testeValidarProjetoSemMateriais::Bool
 testeValidarProjetoSemMateriais =
     let projeto = Projeto 1 "Projeto Sem Materiais" Civil EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         erros = validarProjeto projeto
     in not (null erros)
 
 testeValidarProjetoDataInvalidaFim::Bool
 testeValidarProjetoDataInvalidaFim =
     let projeto = Projeto 1 "Projeto" Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 100] [] []
-        (fromGregorian 2025 6 1) (Just (fromGregorian 2025 1 1)) 50000
+            [Material "Concreto" 2400 30e6 350 100] [] []
+            (fromGregorian 2025 6 1) (Just (fromGregorian 2025 1 1)) 50000
         erros = validarProjeto projeto
     in not (null erros)
 
@@ -61,8 +61,8 @@ testeValidarProjetoDataInvalidaFim =
 testeValidarProjetoIdNegativo::Bool
 testeValidarProjetoIdNegativo =
     let projeto = Projeto (-1) "Projeto" Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 100] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material "Concreto" 2400 30e6 350 100] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         erros = validarProjeto projeto
     in not (null erros)
 
@@ -73,8 +73,8 @@ testeValidarProjetoCompleto =
         calculo1 = CalculoMat "Momento Inércia" [0.3, 0.5] 0.003125 "m⁴" "I=bh³/12"
         funcao1 = Funcao (Linear 2 3) "f(x) = 2x + 3"
         projeto = Projeto 1 "Projeto Completo" Civil EmDesenvolvimento [] []
-        [material1, material2] [calculo1] [funcao1]
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 31)) 100000
+            [Material1, material2] [calculo1] [funcao1]
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 31)) 100000
         erros = validarProjeto projeto
     in null erros
 
@@ -82,16 +82,16 @@ testeValidarProjetoMaterialInvalido::Bool
 testeValidarProjetoMaterialInvalido =
     let materialInvalido = Material "Material Inválido" (-100) (-50) (-10) 0
         projeto = Projeto 1 "Projeto" Civil Planejamento [] []
-        [materialInvalido] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [MaterialInvalido] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         erros = validarProjeto projeto
     in not (null erros) && length erros >= 3 -- densidade, resistência, custo negativos
 
 testeValidarProjetoOrcamentoZero::Bool
 testeValidarProjetoOrcamentoZero =
     let projeto = Projeto 1 "Projeto Zero" Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 100] [] []
-        (fromGregorian 2025 1 1) Nothing 0
+            [Material "Concreto" 2400 30e6 350 100] [] []
+            (fromGregorian 2025 1 1) Nothing 0
         erros = validarProjeto projeto
     in not (null erros)
 
@@ -99,8 +99,8 @@ testeValidarProjetoNomeMuitoLongo::Bool
 testeValidarProjetoNomeMuitoLongo =
     let nomeGigante = replicate 300 'A'
         projeto = Projeto 1 nomeGigante Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 100] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material "Concreto" 2400 30e6 350 100] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         erros = validarProjeto projeto
     in not (null erros)
 
@@ -111,15 +111,15 @@ testeCalcularCustoTotalBasico =
     let material1 = Material "Concreto" 2400 30e6 350 100 -- 350 * 100 = 35000
         material2 = Material "Aço" 7850 500e6 4.50 50 -- 4.50 * 50 = 225
         projeto = Projeto 1 "Projeto" Civil Planejamento [] []
-        [material1, material2] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material1, material2] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         custoTotal = calcularCustoTotal projeto
         esperado = 35225.0 -- 35000 + 225
     in abs (custoTotal- esperado) < 0.01
         testeCalcularCustoTotalSemMateriais::Bool
         testeCalcularCustoTotalSemMateriais =
         let projeto = Projeto 1 "Projeto Vazio" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         custoTotal = calcularCustoTotal projeto
     in custoTotal == 0.0
 
@@ -127,8 +127,8 @@ testeCalcularCustoTotalUmMaterial::Bool
 testeCalcularCustoTotalUmMaterial =
     let material = Material "Tijolo" 1800 15e6 0.50 2000 -- 0.50 * 2000 = 1000
         projeto = Projeto 1 "Casa de Tijolo" Civil Planejamento [] []
-        [material] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         custoTotal = calcularCustoTotal projeto
         esperado = 1000.0
     in abs (custoTotal- esperado) < 0.01
@@ -138,8 +138,8 @@ testeCalcularCustoTotalMaterialesCaros =
     let material1 = Material "Ouro" 19300 200e9 50000 0.001 -- 50000 * 0.001 = 50
         material2 = Material "Platina" 21450 170e9 60000 0.002 -- 60000 * 0.002 = 120
         projeto = Projeto 1 "Projeto Luxo" Civil Planejamento [] []
-        [material1, material2] [] []
-        (fromGregorian 2025 1 1) Nothing 1000000
+            [Material1, material2] [] []
+            (fromGregorian 2025 1 1) Nothing 1000000
         custoTotal = calcularCustoTotal projeto
         esperado = 170.0 -- 50 + 120
     in abs (custoTotal- esperado) < 0.01
@@ -149,8 +149,8 @@ testeCalcularCustoTotalQuantidadeZero =
     let material1 = Material "Concreto" 2400 30e6 350 0
         material2 = Material "Aço" 7850 500e6 4.50 100 -- 350 * 0 = 0 -- 4.50 * 100 = 450
         projeto = Projeto 1 "Projeto" Civil Planejamento [] []
-        [material1, material2] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material1, material2] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         custoTotal = calcularCustoTotal projeto
         esperado = 450.0
     in abs (custoTotal- esperado) < 0.01
@@ -160,8 +160,8 @@ testeCalcularCustoTotalDecimais =
     let material1 = Material "Material A" 1000 1e6 12.34 56.78 -- 12.34 * 56.78 = 700.5852
         material2 = Material "Material B" 2000 2e6 9.87 10.11 -- 9.87 * 10.11 = 99.7857
         projeto = Projeto 1 "Projeto Decimal" Civil Planejamento [] []
-        [material1, material2] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material1, material2] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         custoTotal = calcularCustoTotal projeto
         esperado = 800.3709 -- 700.5852 + 99.7857
     in abs (custoTotal- esperado) < 0.01
@@ -171,7 +171,7 @@ testeCalcularCustoTotalMuitosMateriais =
     let materiais = [Material ("Material " ++ show i) 1000 1e6 10 5 | i <- [1..10]] -- Cada material: 10 * 5 = 50, total = 50 * 10 = 500
         projeto = Projeto 1 "Projeto Grande" Civil Planejamento [] []
         materiais [] []
-        (fromGregorian 2025 1 1) Nothing 100000
+            (fromGregorian 2025 1 1) Nothing 100000
         custoTotal = calcularCustoTotal projeto
         esperado = 500.0
     in abs (custoTotal- esperado) < 0.01
@@ -181,8 +181,8 @@ testeCalcularCustoTotalCustoZero =
     let material1 = Material "Gratuito" 1000 1e6 0 1000
         material2 = Material "Pago" 2000 2e6 100 10 -- 0 * 1000 = 0 -- 100 * 10 = 1000
         projeto = Projeto 1 "Projeto Misto" Civil Planejamento [] []
-        [material1, material2] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material1, material2] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         custoTotal = calcularCustoTotal projeto
         esperado = 1000.0
     in abs (custoTotal- esperado) < 0.01
@@ -191,8 +191,8 @@ testeCalcularCustoTotalValoresGrandes::Bool
 testeCalcularCustoTotalValoresGrandes =
     let material = Material "Caro" 1000 1e6 1000000 1000 -- 1M * 1000 = 1B
         projeto = Projeto 1 "Projeto Bilionário" Civil Planejamento [] []
-        [material] [] []
-        (fromGregorian 2025 1 1) Nothing 2000000000
+            [Material] [] []
+            (fromGregorian 2025 1 1) Nothing 2000000000
         custoTotal = calcularCustoTotal projeto
         esperado = 1000000000.0 -- 1 bilhão
     in abs (custoTotal- esperado) < 1.0
@@ -201,8 +201,8 @@ testeCalcularCustoTotalPrecisao::Bool
 testeCalcularCustoTotalPrecisao =
     let material = Material "Precisão" 1000 1e6 0.001 0.001 -- 0.001 * 0.001 = 0.000001
         projeto = Projeto 1 "Projeto Micro" Civil Planejamento [] []
-        [material] [] []
-        (fromGregorian 2025 1 1) Nothing 1
+            [Material] [] []
+            (fromGregorian 2025 1 1) Nothing 1
         custoTotal = calcularCustoTotal projeto
         esperado = 0.000001
     in abs (custoTotal- esperado) < 0.0000001
@@ -216,7 +216,7 @@ testeGerarRelatorioProjetoCompleto =
         calculo1 = CalculoMat "Área" [10, 20] 200 "m²" "A = b * h"
         funcao1 = Funcao (Linear 2 3) "f(x) = 2x + 3"
         projeto = Projeto 1 "Ponte Rodoviária" Civil EmDesenvolvimento [] []
-        [material1, material2] [calculo1] [funcao1](fromGregorian 2025 3 1) (Just (fromGregorian 2025 12 1)) 100000
+            [Material1, material2] [calculo1] [funcao1](fromGregorian 2025 3 1) (Just (fromGregorian 2025 12 1)) 100000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio > 10 &&
         any (isInfixOf "Ponte Rodoviária") relatorio &&
@@ -233,7 +233,7 @@ testeGerarRelatorioProjetoCompleto =
 testeGerarRelatorioProjetoMinimo::Bool
 testeGerarRelatorioProjetoMinimo =
     let projeto = Projeto 1 "Projeto Mínimo" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 5 &&
         any (isInfixOf "Projeto Mínimo") relatorio
@@ -248,8 +248,8 @@ testeGerarRelatorioProjetoMinimo =
 testeGerarRelatorioProjetoSemDataFim::Bool
 testeGerarRelatorioProjetoSemDataFim =
     let projeto = Projeto 1 "Projeto Indefinido" Mecanica EmRevisao [] []
-        [Material "Metal" 7000 200e6 5 100] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material "Metal" 7000 200e6 5 100] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 5 &&
         any (isInfixOf "Em andamento") relatorio ||
@@ -266,8 +266,8 @@ testeGerarRelatorioProjetoSemDataFim =
 testeGerarRelatorioProjetoConcluido::Bool
 testeGerarRelatorioProjetoConcluido =
     let projeto = Projeto 1 "Projeto Finalizado" Eletrica Concluido [] []
-        [Material "Cabo" 8900 100e9 2 1000] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 1)) 25000relatorio = gerarRelatorioProjeto projeto
+            [Material "Cabo" 8900 100e9 2 1000] [] []
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 1)) 25000relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 5 &&
         any (isInfixOf "Concluido") relatorio ||
         any (isInfixOf "Finalizado") relatorio
@@ -285,7 +285,7 @@ testeGerarRelatorioProjetoMuitosMateriais =
         (1e6 * fromIntegral i) (fromIntegral i) 10 | i <- [1..5]]
         projeto = Projeto 1 "Projeto Rico em Materiais" Estrutural Planejamento [] []
         materiais [] []
-        (fromGregorian 2025 1 1) Nothing 100000
+            (fromGregorian 2025 1 1) Nothing 100000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 10 &&
         length (filter (isInfixOf "Mat") relatorio) >= 5
@@ -306,8 +306,8 @@ testeGerarRelatorioProjetoComCalculos =
         CalculoMat "Massa" [3000, 2400] 7200000 "kg" "m = V * $\rho$"
         ]
         projeto = Projeto 1 "Projeto com Cálculos" Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 200] calculos []
-        (fromGregorian 2025 1 1) Nothing 500000
+            [Material "Concreto" 2400 30e6 350 200] calculos []
+            (fromGregorian 2025 1 1) Nothing 500000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 10 &&
         any (isInfixOf "Área Total") relatorio &&
@@ -323,8 +323,8 @@ testeGerarRelatorioProjetoComCalculos =
 testeGerarRelatorioProjetoOrcamentoAlto::Bool
 testeGerarRelatorioProjetoOrcamentoAlto =
     let projeto = Projeto 1 "Projeto Bilionário" Civil Planejamento [] []
-        [Material "Ouro" 19300 200e9 50000 20] [] []
-        (fromGregorian 2025 1 1) Nothing 10000000
+            [Material "Ouro" 19300 200e9 50000 20] [] []
+            (fromGregorian 2025 1 1) Nothing 10000000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 5 &&
         any (isInfixOf "10000000") relatorio ||
@@ -341,21 +341,21 @@ testeGerarRelatorioProjetoOrcamentoAlto =
 testeGerarRelatorioProjetoTiposVariados::Bool
 testeGerarRelatorioProjetoTiposVariados =
     let projetoCivil = Projeto 1 "Civil" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         projetoMecanica = Projeto 2 "Mecânica" Mecanica EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000
+            (fromGregorian 2025 1 1) Nothing 2000
         projetoEletrica = Projeto 3 "Elétrica" Eletrica EmRevisao [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 3000
+            (fromGregorian 2025 1 1) Nothing 3000
         projetoEstrutural = Projeto 4 "Estrutural" Estrutural Concluido [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 4000
+            (fromGregorian 2025 1 1) Nothing 4000
         relatorios = map gerarRelatorioProjeto [projetoCivil, projetoMecanica, projetoEletrica,
     in all (\r-> length r >= 3) relatorios
 
 testeGerarRelatorioProjetoFormatacao::Bool
 testeGerarRelatorioProjetoFormatacao =
     let projeto = Projeto 1 "Teste Formatação" Civil Planejamento [] []
-        [Material "Teste" 1000 1e6 100 10] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material "Teste" 1000 1e6 100 10] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         relatorio = gerarRelatorioProjeto projeto
         temLinhasSeparadoras = any (all (\c-> c == '=' || c == '-')) relatorio
         temSecoes = any (isInfixOf "RELAT") relatorio ||
@@ -376,7 +376,7 @@ testeGerarRelatorioProjetoComFuncoes =
         Funcao (Quadratica 1 (-2) 1) "Parábola: f(x) = x²- 2x + 1", Funcao (Trigonometrica Seno 1 0) "Senoide: f(x) = sin(x)"
         ]
         projeto = Projeto 1 "Projeto Matemático" Civil Planejamento [] [] [] [] funcoes
-        (fromGregorian 2025 1 1) Nothing 75000
+            (fromGregorian 2025 1 1) Nothing 75000
         relatorio = gerarRelatorioProjeto projeto
     in length relatorio >= 8 &&
         any (isInfixOf "linear") relatorio ||
@@ -395,7 +395,7 @@ testeGerarRelatorioProjetoComFuncoes =
 testeCompararProjetosIguais::Bool
 testeCompararProjetosIguais =
     let projeto = Projeto 1 "Projeto A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         resultado = compararProjetos projeto projeto
     in isInfixOf "iguais" resultado || isInfixOf "mesmo" resultado ||
         isInfixOf "identic" resultado
@@ -410,9 +410,9 @@ testeCompararProjetosIguais =
 testeCompararProjetosDiferentesTipo::Bool
 testeCompararProjetosDiferentesTipo =
     let projeto1 = Projeto 1 "Projeto Civil" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Projeto Mecânico" Mecanica EmDesenvolvimento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 60000
+            (fromGregorian 2025 1 1) Nothing 60000
         resultado = compararProjetos projeto1 projeto2
     in isInfixOf "Civil" resultado && isInfixOf "Mecanica" resultado &&
         length resultado > 50
@@ -426,9 +426,9 @@ testeCompararProjetosDiferentesTipo =
         testeCompararProjetosOrcamentoDiferente::Bool
         testeCompararProjetosOrcamentoDiferente =
         let projeto1 = Projeto 1 "Barato" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 10000
+            (fromGregorian 2025 1 1) Nothing 10000
         projeto2 = Projeto 2 "Caro" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 100000
+            (fromGregorian 2025 1 1) Nothing 100000
         resultado = compararProjetos projeto1 projeto2
     in (isInfixOf "10000" resultado || isInfixOf "10.000" resultado) &&
         (isInfixOf "100000" resultado || isInfixOf "100.000" resultado) &&
@@ -444,9 +444,9 @@ testeCompararProjetosDiferentesTipo =
 testeCompararProjetosStatusDiferente::Bool
 testeCompararProjetosStatusDiferente =
     let projeto1 = Projeto 1 "Em Planejamento" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Concluído" Civil Concluido [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 1)) 50000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 1)) 50000
         resultado = compararProjetos projeto1 projeto2
     in isInfixOf "Planejamento" resultado &&
         (isInfixOf "Concluido" resultado || isInfixOf "finaliz" resultado)
@@ -461,9 +461,9 @@ testeCompararProjetosStatusDiferente =
 testeCompararProjetosDatasDiferentes::Bool
 testeCompararProjetosDatasDiferentes =
     let projeto1 = Projeto 1 "Antigo" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Recente" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 6 1) Nothing 50000
+            (fromGregorian 2025 6 1) Nothing 50000
         resultado = compararProjetos projeto1 projeto2
     in isInfixOf "2025" resultado && length resultado > 30
     where
@@ -476,10 +476,10 @@ testeCompararProjetosDatasDiferentes =
         testeCompararProjetosMateriais::Bool
         testeCompararProjetosMateriais =
         let projeto1 = Projeto 1 "Com Material" Civil Planejamento [] []
-        [Material "Concreto" 2400 30e6 350 100] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            [Material "Concreto" 2400 30e6 350 100] [] []
+            (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Sem Material" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         resultado = compararProjetos projeto1 projeto2
     in isInfixOf "material" resultado &&
         (isInfixOf "1" resultado && isInfixOf "0" resultado)
@@ -498,10 +498,10 @@ testeCompararProjetosComplexidade =
         calculo1 = CalculoMat "Área" [10, 20] 200 "m²" "A = b * h"
         funcao1 = Funcao (Linear 2 3) "f(x) = 2x + 3"
         projetoSimples = Projeto 1 "Simples" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 10000
+            (fromGregorian 2025 1 1) Nothing 10000
         projetoComplexo = Projeto 2 "Complexo" Civil Planejamento [] []
-        [material1, material2] [calculo1] [funcao1]
-        (fromGregorian 2025 1 1) Nothing 100000
+            [Material1, material2] [calculo1] [funcao1]
+            (fromGregorian 2025 1 1) Nothing 100000
         resultado = compararProjetos projetoSimples projetoComplexo
     in length resultado > 100 &&
         (isInfixOf "simples" resultado || isInfixOf "complex" resultado)
@@ -516,9 +516,9 @@ testeCompararProjetosComplexidade =
 testeCompararProjetosNomesSimilares::Bool
 testeCompararProjetosNomesSimilares =
     let projeto1 = Projeto 1 "Ponte do Rio A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         projeto2 = Projeto 2 "Ponte do Rio B" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 55000
+            (fromGregorian 2025 1 1) Nothing 55000
         resultado = compararProjetos projeto1 projeto2
     in isInfixOf "Ponte" resultado && isInfixOf "Rio" resultado
     whereisInfixOf xs ys = any (isPrefixOf xs) (tails ys)
@@ -531,9 +531,9 @@ testeCompararProjetosNomesSimilares =
 testeCompararProjetosComDataFim::Bool
 testeCompararProjetosComDataFim =
     let projeto1 = Projeto 1 "Com Fim" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 1)) 50000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 1)) 50000
         projeto2 = Projeto 2 "Sem Fim" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 50000
+            (fromGregorian 2025 1 1) Nothing 50000
         resultado = compararProjetos projeto1 projeto2
     in isInfixOf "fim" resultado || isInfixOf "conclus" resultado ||
         isInfixOf "definid" resultado
@@ -548,9 +548,9 @@ testeCompararProjetosComDataFim =
 testeCompararProjetosFormatacao::Bool
 testeCompararProjetosFormatacao =
     let projeto1 = Projeto 1 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         projeto2 = Projeto 2 "B" Mecanica Concluido [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000
+            (fromGregorian 2025 1 1) Nothing 2000
         resultado = compararProjetos projeto1 projeto2
     in length resultado > 20 &&
         (any (== ':') resultado || any (== '=') resultado || any (== '-') resultado)
@@ -645,7 +645,7 @@ testeEstatisticasBasicasMuitosValores =
 testeContarPorTipoUnico::Bool
 testeContarPorTipoUnico =
     let projetos = [Projeto i ("P" ++ show i) Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000 | i <- [1..5]]
+            (fromGregorian 2025 1 1) Nothing 1000 | i <- [1..5]]
         resultado = contarPorTipo projetos
         esperado = [(Civil, 5)]
     in resultado == esperado
@@ -653,16 +653,16 @@ testeContarPorTipoUnico =
 testeContarPorTipoVario::Bool
 testeContarPorTipoVario =
     let projetos = [ Projeto 1 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         ,
         Projeto 2 "B" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000
+            (fromGregorian 2025 1 1) Nothing 2000
         ,
         Projeto 3 "C" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 3000
+            (fromGregorian 2025 1 1) Nothing 3000
         ,
         Projeto 4 "D" Eletrica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 4000
+            (fromGregorian 2025 1 1) Nothing 4000
         ]
         resultado = contarPorTipo projetos
         civilCount = lookup Civil resultado
@@ -678,7 +678,7 @@ testeContarPorTipoVazio =
 testeContarPorTipoTodosIguais::Bool
 testeContarPorTipoTodosIguais =
     let projetos = replicate 10 (Projeto 1 "Teste" Estrutural Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000)
+            (fromGregorian 2025 1 1) Nothing 1000)
         resultado = contarPorTipo projetos
         esperado = [(Estrutural, 10)]
     in resultado == esperado
@@ -686,25 +686,25 @@ testeContarPorTipoTodosIguais =
 testeContarPorTipoCompleto::Bool
 testeContarPorTipoCompleto =
     let projetos = [ Projeto 1 "Civil1" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         ,
         Projeto 2 "Civil2" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000
+            (fromGregorian 2025 1 1) Nothing 2000
         ,
         Projeto 3 "Mec1" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 3000
+            (fromGregorian 2025 1 1) Nothing 3000
         ,
         Projeto 4 "Mec2" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 4000
+            (fromGregorian 2025 1 1) Nothing 4000
         ,
         Projeto 5 "Mec3" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 5000
+            (fromGregorian 2025 1 1) Nothing 5000
         ,
         Projeto 6 "Elet1" Eletrica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 6000
+            (fromGregorian 2025 1 1) Nothing 6000
         ,
         Projeto 7 "Estr1" Estrutural Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 7000
+            (fromGregorian 2025 1 1) Nothing 7000
         ]
         resultado = contarPorTipo projetos
         totalProjetos = sum (map snd resultado)
@@ -714,16 +714,16 @@ testeContarPorTipoCompleto =
 testeContarPorTipoOrdem::Bool
 testeContarPorTipoOrdem =
     let projetos = [ Projeto 1 "Z" Estrutural Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         ,
         Projeto 2 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000
+            (fromGregorian 2025 1 1) Nothing 2000
         ,
         Projeto 3 "M" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 3000
+            (fromGregorian 2025 1 1) Nothing 3000
         ,
         Projeto 4 "E" Eletrica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 4000
+            (fromGregorian 2025 1 1) Nothing 4000
         ]
         resultado = contarPorTipo projetos
     in length resultado == 4 && all (\(_, count)-> count == 1) resultado
@@ -731,14 +731,14 @@ testeContarPorTipoOrdem =
 testeContarPorTipoUmDeCadaTipo::Bool
 testeContarPorTipoUmDeCadaTipo =
     let projetos = [ Projeto 1 "Civil" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         ,
         Projeto 2 "Mecanica" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000, Projeto 3 "Eletrica" Eletrica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 3000
+            (fromGregorian 2025 1 1) Nothing 2000, Projeto 3 "Eletrica" Eletrica Planejamento [] [] [] [] []
+            (fromGregorian 2025 1 1) Nothing 3000
         ,
         Projeto 4 "Estrutural" Estrutural Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 4000
+            (fromGregorian 2025 1 1) Nothing 4000
         ]
         resultado = contarPorTipo projetos
         todosComUm = all (\(_, count)-> count == 1) resultado
@@ -748,9 +748,9 @@ testeContarPorTipoUmDeCadaTipo =
 testeContarPorTipoDesbalanceado::Bool
 testeContarPorTipoDesbalanceado =
     let projetosCivil = replicate 10 (Projeto 1 "Civil" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000)
+            (fromGregorian 2025 1 1) Nothing 1000)
         projetoMecanica = [Projeto 11 "Mecanica" Mecanica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000]
+            (fromGregorian 2025 1 1) Nothing 2000]
         projetos = projetosCivil ++ projetoMecanica
         resultado = contarPorTipo projetos
         civilCount = lookup Civil resultado
@@ -760,7 +760,7 @@ testeContarPorTipoDesbalanceado =
 testeContarPorTipoMuitosProjetos::Bool
 testeContarPorTipoMuitosProjetos =
     let projetos = [Projeto i ("P" ++ show i) (tiposPorId i) Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing (fromIntegral i * 1000)
+            (fromGregorian 2025 1 1) Nothing (fromIntegral i * 1000)
         | i <- [1..100]]
         resultado = contarPorTipo projetos
         totalContado = sum (map snd resultado)
@@ -775,13 +775,13 @@ testeContarPorTipoMuitosProjetos =
 testeContarPorTipoStatusVariado::Bool
 testeContarPorTipoStatusVariado =
     let projetos = [ Projeto 1 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         ,
         Projeto 2 "B" Civil Concluido [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 2000
+            (fromGregorian 2025 1 1) Nothing 2000
         ,
         Projeto 3 "C" Civil Cancelado [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 3000
+            (fromGregorian 2025 1 1) Nothing 3000
         ]
         resultado = contarPorTipo projetos
         esperado = [(Civil, 3)] -- status não importa, só tipo
@@ -799,10 +799,10 @@ testeContarPorTipoStatusVariado =
 testeProjetosEmAtrasoNenhum::Bool
 testeProjetosEmAtrasoNenhum =
     let projetos = [ Projeto 1 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 1)) 1000
         ,
         Projeto 2 "B" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 2 1) (Just (fromGregorian 2025 12 1)) 2000
+            (fromGregorian 2025 2 1) (Just (fromGregorian 2025 12 1)) 2000
         ]
         dataAtual = fromGregorian 2025 6 1 -- antes dos prazos
         resultado = projetosEmAtraso projetos dataAtual
@@ -811,10 +811,10 @@ testeProjetosEmAtrasoNenhum =
 testeProjetosEmAtrasoTodos::Bool
 testeProjetosEmAtrasoTodos =
     let projetos = [ Projeto 1 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
         ,
         Projeto 2 "B" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 2 1) (Just (fromGregorian 2025 4 1)) 2000
+            (fromGregorian 2025 2 1) (Just (fromGregorian 2025 4 1)) 2000
         ]
         dataAtual = fromGregorian 2025 6 1 -- depois dos prazos
         resultado = projetosEmAtraso projetos dataAtual
@@ -823,13 +823,13 @@ testeProjetosEmAtrasoTodos =
 testeProjetosEmAtrasoAlguns::Bool
 testeProjetosEmAtrasoAlguns =
     let projetos = [ Projeto 1 "Atrasado" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
         ,
         Projeto 2 "No Prazo" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 2 1) (Just (fromGregorian 2025 12 1)) 2000
+            (fromGregorian 2025 2 1) (Just (fromGregorian 2025 12 1)) 2000
         ,
         Projeto 3 "Também Atrasado" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 4 1)) 3000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 4 1)) 3000
         ]
         dataAtual = fromGregorian 2025 6 1
         resultado = projetosEmAtraso projetos dataAtual
@@ -839,10 +839,10 @@ testeProjetosEmAtrasoAlguns =
 testeProjetosEmAtrasoSemDataFim::Bool
 testeProjetosEmAtrasoSemDataFim =
     let projetos = [ Projeto 1 "Sem Prazo" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) Nothing 1000
+            (fromGregorian 2025 1 1) Nothing 1000
         ,
         Projeto 2 "Com Prazo Vencido" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 2 1) (Just (fromGregorian 2025 3 1)) 2000
+            (fromGregorian 2025 2 1) (Just (fromGregorian 2025 3 1)) 2000
         ]
         dataAtual = fromGregorian 2025 6 1
         resultado = projetosEmAtraso projetos dataAtual
@@ -857,7 +857,7 @@ testeProjetosEmAtrasoListaVazia =
 testeProjetosEmAtrasoPrazoHoje::Bool
 testeProjetosEmAtrasoPrazoHoje =
     let projetos = [ Projeto 1 "Prazo Hoje" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 1)) 1000
         dataAtual = fromGregorian 2025 6 1 -- mesmo dia do prazo
         resultado = projetosEmAtraso projetos dataAtual
     in null resultado -- não deve estar em atraso no mesmo dia
@@ -865,7 +865,7 @@ testeProjetosEmAtrasoPrazoHoje =
 testeProjetosEmAtrasoPrazoAmanha::Bool
 testeProjetosEmAtrasoPrazoAmanha =
     let projetos = [ Projeto 1 "Prazo Amanhã" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 2)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 6 2)) 1000
         dataAtual = fromGregorian 2025 6 1 -- um dia antes do prazo
         resultado = projetosEmAtraso projetos dataAtual
     in null resultado
@@ -873,13 +873,13 @@ testeProjetosEmAtrasoPrazoAmanha =
 testeProjetosEmAtrasoProjetosConcluidos::Bool
 testeProjetosEmAtrasoProjetosConcluidos =
     let projetos = [ Projeto 1 "Concluído no Prazo" Civil Concluido [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
         ,
         Projeto 2 "Concluído Atrasado" Civil Concluido [] [] [] [] []
-        (fromGregorian 2025 2 1) (Just (fromGregorian 2025 4 1)) 2000
+            (fromGregorian 2025 2 1) (Just (fromGregorian 2025 4 1)) 2000
         ,
         Projeto 3 "Em Andamento Atrasado" Civil EmDesenvolvimento [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 5 1)) 3000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 5 1)) 3000
         ]
         dataAtual = fromGregorian 2025 6 1
         resultado = projetosEmAtraso projetos dataAtual
@@ -888,13 +888,13 @@ testeProjetosEmAtrasoProjetosConcluidos =
 testeProjetosEmAtrasoOrdenacao::Bool
 testeProjetosEmAtrasoOrdenacao =
     let projetos = [ Projeto 3 "C" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 5 1)) 3000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 5 1)) 3000
         ,
         Projeto 1 "A" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
         ,
         Projeto 2 "B" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 4 1)) 2000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 4 1)) 2000
         ]
         dataAtual = fromGregorian 2025 6 1
         resultado = projetosEmAtraso projetos dataAtual
@@ -904,12 +904,12 @@ testeProjetosEmAtrasoOrdenacao =
 testeProjetosEmAtrasoTiposVariados::Bool
 testeProjetosEmAtrasoTiposVariados =
     let projetos = [ Projeto 1 "Civil Atrasado" Civil Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 3 1)) 1000
         ,
         Projeto 2 "Mecânica Atrasada" Mecanica EmDesenvolvimento [] [] [] [](fromGregorian 2025 1 1) (Just (fromGregorian 2025 4 1)) 2000
         ,
         Projeto 3 "Elétrica No Prazo" Eletrica Planejamento [] [] [] [] []
-        (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 1)) 3000
+            (fromGregorian 2025 1 1) (Just (fromGregorian 2025 12 1)) 3000
         ]
         dataAtual = fromGregorian 2025 6 1
         resultado = projetosEmAtraso projetos dataAtual
@@ -1003,87 +1003,87 @@ executarTestesEspecialista5 = do
 
 testesEspecialista5::[(String, Bool)]
 testesEspecialista5 = [
-    -- Validar Projeto
-    ("Validar Projeto Válido", testeValidarProjetoValido),
-    ("Validar Nome Vazio", testeValidarProjetoNomeVazio),
-    ("Validar Orçamento Negativo", testeValidarProjetoOrcamentoNegativo),
-    ("Validar Sem Materiais", testeValidarProjetoSemMateriais),
-    ("Validar Data Fim Inválida", testeValidarProjetoDataInvalidaFim),
-    ("Validar ID Negativo", testeValidarProjetoIdNegativo),
-    ("Validar Projeto Completo", testeValidarProjetoCompleto),
-    ("Validar Material Inválido", testeValidarProjetoMaterialInvalido),
-    ("Validar Orçamento Zero", testeValidarProjetoOrcamentoZero),
-    ("Validar Nome Muito Longo", testeValidarProjetoNomeMuitoLongo),
+        -- Validar Projeto
+        ("Validar Projeto Válido", testeValidarProjetoValido),
+        ("Validar Nome Vazio", testeValidarProjetoNomeVazio),
+        ("Validar Orçamento Negativo", testeValidarProjetoOrcamentoNegativo),
+        ("Validar Sem Materiais", testeValidarProjetoSemMateriais),
+        ("Validar Data Fim Inválida", testeValidarProjetoDataInvalidaFim),
+        ("Validar ID Negativo", testeValidarProjetoIdNegativo),
+        ("Validar Projeto Completo", testeValidarProjetoCompleto),
+        ("Validar Material Inválido", testeValidarProjetoMaterialInvalido),
+        ("Validar Orçamento Zero", testeValidarProjetoOrcamentoZero),
+        ("Validar Nome Muito Longo", testeValidarProjetoNomeMuitoLongo),
 
-    -- Calcular Custo Total,
-    ("Custo Total Básico", testeCalcularCustoTotalBasico),
-    ("Custo Total Sem Materiais", testeCalcularCustoTotalSemMateriais),
-    ("Custo Total Um Material", testeCalcularCustoTotalUmMaterial),
-    ("Custo Total Materiais Caros", testeCalcularCustoTotalMaterialesCaros),
-    ("Custo Total Quantidade Zero", testeCalcularCustoTotalQuantidadeZero),
-    ("Custo Total Decimais", testeCalcularCustoTotalDecimais),
-    ("Custo Total Muitos Materiais", testeCalcularCustoTotalMuitosMateriais),
-    ("Custo Total Custo Zero", testeCalcularCustoTotalCustoZero),
-    ("Custo Total Valores Grandes", testeCalcularCustoTotalValoresGrandes),
-    ("Custo Total Precisão", testeCalcularCustoTotalPrecisao),
+        -- Calcular Custo Total,
+        ("Custo Total Básico", testeCalcularCustoTotalBasico),
+        ("Custo Total Sem Materiais", testeCalcularCustoTotalSemMateriais),
+        ("Custo Total Um Material", testeCalcularCustoTotalUmMaterial),
+        ("Custo Total Materiais Caros", testeCalcularCustoTotalMaterialesCaros),
+        ("Custo Total Quantidade Zero", testeCalcularCustoTotalQuantidadeZero),
+        ("Custo Total Decimais", testeCalcularCustoTotalDecimais),
+        ("Custo Total Muitos Materiais", testeCalcularCustoTotalMuitosMateriais),
+        ("Custo Total Custo Zero", testeCalcularCustoTotalCustoZero),
+        ("Custo Total Valores Grandes", testeCalcularCustoTotalValoresGrandes),
+        ("Custo Total Precisão", testeCalcularCustoTotalPrecisao),
 
-    -- Gerar Relatório,
-    ("Relatório Completo", testeGerarRelatorioProjetoCompleto),
-    ("Relatório Mínimo", testeGerarRelatorioProjetoMinimo),
-    ("Relatório Sem Data Fim", testeGerarRelatorioProjetoSemDataFim),
-    ("Relatório Concluído", testeGerarRelatorioProjetoConcluido),
-    ("Relatório Muitos Materiais", testeGerarRelatorioProjetoMuitosMateriais),
-    ("Relatório Com Cálculos", testeGerarRelatorioProjetoComCalculos),
-    ("Relatório Orçamento Alto", testeGerarRelatorioProjetoOrcamentoAlto),
-    ("Relatório Tipos Variados", testeGerarRelatorioProjetoTiposVariados),
-    ("Relatório Formatação", testeGerarRelatorioProjetoFormatacao),
-    ("Relatório Com Funções", testeGerarRelatorioProjetoComFuncoes),
+        -- Gerar Relatório,
+        ("Relatório Completo", testeGerarRelatorioProjetoCompleto),
+        ("Relatório Mínimo", testeGerarRelatorioProjetoMinimo),
+        ("Relatório Sem Data Fim", testeGerarRelatorioProjetoSemDataFim),
+        ("Relatório Concluído", testeGerarRelatorioProjetoConcluido),
+        ("Relatório Muitos Materiais", testeGerarRelatorioProjetoMuitosMateriais),
+        ("Relatório Com Cálculos", testeGerarRelatorioProjetoComCalculos),
+        ("Relatório Orçamento Alto", testeGerarRelatorioProjetoOrcamentoAlto),
+        ("Relatório Tipos Variados", testeGerarRelatorioProjetoTiposVariados),
+        ("Relatório Formatação", testeGerarRelatorioProjetoFormatacao),
+        ("Relatório Com Funções", testeGerarRelatorioProjetoComFuncoes),
 
-    -- Comparar Projetos,
-    ("Comparar Projetos Iguais", testeCompararProjetosIguais),
-    ("Comparar Tipos Diferentes", testeCompararProjetosDiferentesTipo),
-    ("Comparar Orçamento Diferente", testeCompararProjetosOrcamentoDiferente),
-    ("Comparar Status Diferente", testeCompararProjetosStatusDiferente),
-    ("Comparar Datas Diferentes", testeCompararProjetosDatasDiferentes),
-    ("Comparar Materiais", testeCompararProjetosMateriais),
-    ("Comparar Complexidade", testeCompararProjetosComplexidade),
-    ("Comparar Nomes Similares", testeCompararProjetosNomesSimilares),
-    ("Comparar Com Data Fim", testeCompararProjetosComDataFim),
-    ("Comparar Formatação", testeCompararProjetosFormatacao),
+        -- Comparar Projetos,
+        ("Comparar Projetos Iguais", testeCompararProjetosIguais),
+        ("Comparar Tipos Diferentes", testeCompararProjetosDiferentesTipo),
+        ("Comparar Orçamento Diferente", testeCompararProjetosOrcamentoDiferente),
+        ("Comparar Status Diferente", testeCompararProjetosStatusDiferente),
+        ("Comparar Datas Diferentes", testeCompararProjetosDatasDiferentes),
+        ("Comparar Materiais", testeCompararProjetosMateriais),
+        ("Comparar Complexidade", testeCompararProjetosComplexidade),
+        ("Comparar Nomes Similares", testeCompararProjetosNomesSimilares),
+        ("Comparar Com Data Fim", testeCompararProjetosComDataFim),
+        ("Comparar Formatação", testeCompararProjetosFormatacao),
 
-    -- Estatísticas Básicas,
-    ("Estatísticas Normal", testeEstatisticasBasicasNormal),
-    ("Estatísticas Um Elemento", testeEstatisticasBasicasUmElemento),
-    ("Estatísticas Negativos", testeEstatisticasBasicasNegativos),
-    ("Estatísticas Decimais", testeEstatisticasBasicasDecimais),
-    ("Estatísticas Duplicados", testeEstatisticasBasicasDuplicados),
-    ("Estatísticas Ordem Aleatória", testeEstatisticasBasicasOrdemAleatoria),
-    ("Estatísticas Grandes", testeEstatisticasBasicasGrandes),
-    ("Estatísticas Pequenos", testeEstatisticasBasicasPequenos),
-    ("Estatísticas Zeros", testeEstatisticasBasicasZeros),
-    ("Estatísticas Muitos Valores", testeEstatisticasBasicasMuitosValores),
+        -- Estatísticas Básicas,
+        ("Estatísticas Normal", testeEstatisticasBasicasNormal),
+        ("Estatísticas Um Elemento", testeEstatisticasBasicasUmElemento),
+        ("Estatísticas Negativos", testeEstatisticasBasicasNegativos),
+        ("Estatísticas Decimais", testeEstatisticasBasicasDecimais),
+        ("Estatísticas Duplicados", testeEstatisticasBasicasDuplicados),
+        ("Estatísticas Ordem Aleatória", testeEstatisticasBasicasOrdemAleatoria),
+        ("Estatísticas Grandes", testeEstatisticasBasicasGrandes),
+        ("Estatísticas Pequenos", testeEstatisticasBasicasPequenos),
+        ("Estatísticas Zeros", testeEstatisticasBasicasZeros),
+        ("Estatísticas Muitos Valores", testeEstatisticasBasicasMuitosValores),
 
-    -- Contar Por Tipo,
-    ("Contar Tipo Único", testeContarPorTipoUnico),
-    ("Contar Tipo Vário", testeContarPorTipoVario),
-    ("Contar Tipo Vazio", testeContarPorTipoVazio),
-    ("Contar Tipo Todos Iguais", testeContarPorTipoTodosIguais),
-    ("Contar Tipo Completo", testeContarPorTipoCompleto),
-    ("Contar Tipo Ordem", testeContarPorTipoOrdem),
-    ("Contar Tipo Um de Cada", testeContarPorTipoUmDeCadaTipo),
-    ("Contar Tipo Desbalanceado", testeContarPorTipoDesbalanceado),
-    ("Contar Tipo Muitos Projetos", testeContarPorTipoMuitosProjetos),
-    ("Contar Tipo Status Variado", testeContarPorTipoStatusVariado),
+        -- Contar Por Tipo,
+        ("Contar Tipo Único", testeContarPorTipoUnico),
+        ("Contar Tipo Vário", testeContarPorTipoVario),
+        ("Contar Tipo Vazio", testeContarPorTipoVazio),
+        ("Contar Tipo Todos Iguais", testeContarPorTipoTodosIguais),
+        ("Contar Tipo Completo", testeContarPorTipoCompleto),
+        ("Contar Tipo Ordem", testeContarPorTipoOrdem),
+        ("Contar Tipo Um de Cada", testeContarPorTipoUmDeCadaTipo),
+        ("Contar Tipo Desbalanceado", testeContarPorTipoDesbalanceado),
+        ("Contar Tipo Muitos Projetos", testeContarPorTipoMuitosProjetos),
+        ("Contar Tipo Status Variado", testeContarPorTipoStatusVariado),
 
-    -- Projetos Em Atraso,
-    ("Atraso Nenhum", testeProjetosEmAtrasoNenhum),
-    ("Atraso Todos", testeProjetosEmAtrasoTodos),
-    ("Atraso Alguns", testeProjetosEmAtrasoAlguns),
-    ("Atraso Sem Data Fim", testeProjetosEmAtrasoSemDataFim),
-    ("Atraso Lista Vazia", testeProjetosEmAtrasoListaVazia),
-    ("Atraso Prazo Hoje", testeProjetosEmAtrasoPrazoHoje),
-    ("Atraso Prazo Amanhã", testeProjetosEmAtrasoPrazoAmanha),
-    ("Atraso Projetos Concluídos", testeProjetosEmAtrasoProjetosConcluidos),
-    ("Atraso Ordenação", testeProjetosEmAtrasoOrdenacao),
-    ("Atraso Tipos Variados", testeProjetosEmAtrasoTiposVariados)
-]
+        -- Projetos Em Atraso,
+        ("Atraso Nenhum", testeProjetosEmAtrasoNenhum),
+        ("Atraso Todos", testeProjetosEmAtrasoTodos),
+        ("Atraso Alguns", testeProjetosEmAtrasoAlguns),
+        ("Atraso Sem Data Fim", testeProjetosEmAtrasoSemDataFim),
+        ("Atraso Lista Vazia", testeProjetosEmAtrasoListaVazia),
+        ("Atraso Prazo Hoje", testeProjetosEmAtrasoPrazoHoje),
+        ("Atraso Prazo Amanhã", testeProjetosEmAtrasoPrazoAmanha),
+        ("Atraso Projetos Concluídos", testeProjetosEmAtrasoProjetosConcluidos),
+        ("Atraso Ordenação", testeProjetosEmAtrasoOrdenacao),
+        ("Atraso Tipos Variados", testeProjetosEmAtrasoTiposVariados)
+    ]

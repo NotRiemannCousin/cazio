@@ -28,13 +28,13 @@ normaVetor::Vetor -> Double
 normaVetor (Vetor xs) = sqrt $ sum $ map (^2) xs
 
 
-anguloEntreVetores :: Vetor -> Vetor -> Maybe Angulo
+anguloEntreVetores::Vetor -> Vetor -> Maybe Angulo
 anguloEntreVetores u@(Vetor xs) v@(Vetor ys)
     | length xs /= length ys     = Nothing
     | normaU == 0 || normaV == 0 = Nothing
     | otherwise                  = Just $ acos $ (unsafeProdutoEscalar xs ys) / (normaU * normaV)
     where
-            normaU = normaVetor u
+        normaU = normaVetor u
         normaV = normaVetor v
 
 
@@ -50,7 +50,7 @@ checarTamanhoSum::Matriz -> Matriz -> Bool
 checarTamanhoSum (Matriz m1) (Matriz m2) =
         length m1 == length m2 && tudoIgual (colTam m1 ++ colTam m2)
     where
-            colTam = map length
+        colTam = map length
 
 
 somarMatrizes::Matriz -> Matriz -> Maybe Matriz
@@ -58,35 +58,35 @@ somarMatrizes m1@(Matriz xss) m2@(Matriz yss)
         | checarTamanhoSum m1 m2 == False = Nothing
         | otherwise                    = Just $ Matriz $ map somarCols $ zip xss yss
     where
-            somarCols::([Double], [Double]) -> [Double]
+        somarCols::([Double], [Double]) -> [Double]
         somarCols (a, b) = zipWith (+) a b
 
 
-transpostaMatriz :: Matriz -> Matriz
+transpostaMatriz::Matriz -> Matriz
 transpostaMatriz (Matriz xss) = Matriz (transposta' xss)
     where
-            transposta' :: [[Double]] -> [[Double]]
+        transposta'::[[Double]] -> [[Double]]
         transposta' ([] : _) = []
         transposta' xs = (map head xs) : transposta' (map tail xs)
 
 
 
-checarTamanhoMul :: Matriz -> Matriz -> Bool
+checarTamanhoMul::Matriz -> Matriz -> Bool
 checarTamanhoMul (Matriz m1) (Matriz m2) =
         tudoIgual (colTam m1) && tudoIgual (colTam m2) &&
         case m1 of
             []    -> True
             (r:_) -> length r == length m2
     where
-            colTam = map length
+        colTam = map length
 
 
-multiplicarMatrizes :: Matriz -> Matriz -> Maybe Matriz
+multiplicarMatrizes::Matriz -> Matriz -> Maybe Matriz
 multiplicarMatrizes m1@(Matriz xss) m2
-    | checarTamanhoMul m1 m2 == False = Nothing
-    | otherwise                       = Just $ Matriz resultado
+        | checarTamanhoMul m1 m2 == False = Nothing
+        | otherwise                       = Just $ Matriz resultado
     where
-            yssT = getMatriz $ transpostaMatriz m2
+        yssT = getMatriz $ transpostaMatriz m2
         getMatriz (Matriz xs) = xs
         resultado = [ [ unsafeProdutoEscalar lin col | col <- yssT ] | lin <- xss ]
     
@@ -94,12 +94,12 @@ multiplicarMatrizes m1@(Matriz xss) m2
 
 quadrada xs = tudoIgual (length xs : map length xs)
 
-determinante :: Matriz -> Maybe Double
+determinante::Matriz -> Maybe Double
 determinante (Matriz m)
         | not (quadrada m) = Nothing
         | otherwise = Just (det m)
     where
-            det [] = 1
+        det [] = 1
         det [[x]] = x
         det (linha:resto) = sum $ zipWith (\j x -> (-1)^j * x * det (menor j resto)) [0..] linha
         
@@ -107,7 +107,7 @@ determinante (Matriz m)
         remover j linha = take j linha ++ drop (j+1) linha
 
 
-resolverSistemaLinear :: Matriz -> Vetor -> Maybe Vetor
+resolverSistemaLinear::Matriz -> Vetor -> Maybe Vetor
 resolverSistemaLinear mat@(Matriz m) (Vetor v)
         | not (quadrada m) || length m /= length v = Nothing
         | otherwise = case determinante mat of
@@ -116,7 +116,7 @@ resolverSistemaLinear mat@(Matriz m) (Vetor v)
                 then Nothing
                 else Just $ Vetor [det (substitui i) / detA | i <- [0..n-1]]
     where
-            n = length m
+        n = length m
         
         substitui col = [take col linha ++ [v !! i] ++ drop (col+1) linha | (i, linha) <- zip [0..] m]
         

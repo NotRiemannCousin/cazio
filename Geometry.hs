@@ -38,7 +38,7 @@ calcularArea (Retangulo b h)        = b * h                                     
 calcularArea (Paralelepipedo b l h) = 2 * (b * l + b * h + h * l)               -- bl + bl + bh + bh + hl + hl = 2(bl + bh + hl)
 calcularArea (Triangulo a b c)      = sqrt $ p * (p - a') * (p - b') * (p - c') -- Formula de heron
     where
-            a' = distanciaEntrePontos a b
+        a' = distanciaEntrePontos a b
         b' = distanciaEntrePontos a c
         c' = distanciaEntrePontos b c
         p  = (a' + b' + c') / 2
@@ -47,8 +47,7 @@ calcularArea (Poligono [_])         = 0
 calcularArea (Poligono [_, _])      = 0
 calcularArea (Poligono ps)          = (sum $ map det2D $ edges ps) / 2
     where
-            det2D ((Ponto2D x1 y1), (Ponto2D x2 y2)) =
-            x1 * y2 - x2 * y1
+        det2D ((Ponto2D x1 y1), (Ponto2D x2 y2)) = x1 * y2 - x2 * y1
 
 
 calcularPerimetro::Figura -> Perimetro
@@ -56,12 +55,12 @@ calcularPerimetro (Circulo r)            = 2 * pi * r
 calcularPerimetro (Retangulo b h)        = 2 * (b + h)
 calcularPerimetro (Triangulo a b c)      = a' +  b' + c'
     where
-            a' = distanciaEntrePontos a b
+        a' = distanciaEntrePontos a b
         b' = distanciaEntrePontos a c
         c' = distanciaEntrePontos b c
 calcularPerimetro (Poligono ps)          = sum $ map distTupla $ edges ps
     where
-            distTupla (a, b) = distanciaEntrePontos a b
+        distTupla (a, b) = distanciaEntrePontos a b
 
 calcularVolume::Figura -> Volume
 calcularVolume (Esfera r)             = 4 / 3 * pi * r ^ 3                        -- (4/3)πr³
@@ -76,7 +75,7 @@ intersecaoRetas (Ponto2D x1 y1, Ponto2D x2 y2) (Ponto2D x3 y3, Ponto2D x4 y4)
         | det == 0  = Nothing
         | otherwise = Just $ Ponto2D x y
     where
-            det = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+        det = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
         x = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / det
         y = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / det
 
@@ -89,7 +88,7 @@ dentroDoPoligono::Ponto2D -> [Ponto2D] -> Bool
 dentroDoPoligono _ [] = False
 dentroDoPoligono p@(Ponto2D x y) ps = p `elem` ps || count `mod` 2 == 1
     where
-            count = length $ filter (valido.intersectaX) $ edges ps
+        count = length $ filter (valido.intersectaX) $ edges ps
         entre a b = a > x
         valido Nothing = False
         valido (Just (Ponto2D a b)) = entre a b

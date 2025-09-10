@@ -350,7 +350,7 @@ testeComprimentoConstante =
     in abs (comprimento- 5.0) < 0.1 -- diferença entre-2 e 3
 
 
-executarTestesCalculo :: IO ()
+executarTestesCalculo::IO ()
 executarTestesCalculo = do
     putStrLn "======================================"
     putStrLn "    TESTES CÁLCULO"

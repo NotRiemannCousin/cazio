@@ -129,7 +129,8 @@ testePotenciaVILED =
     -- LED de alta potência: 3.3V, 1A
     let tensao = 3.3
         corrente = 1.0
-        potencia = potenciaEletricaVI tensao correnteesperada = 3.3 -- 3.3W
+        potencia = potenciaEletricaVI tensao corrente
+        esperada = 3.3 -- 3.3W
     in abs (potencia- esperada) < 0.001
 
 
@@ -186,7 +187,8 @@ testePotenciaVIBaixaPotencia =
     -- Sensor: 3V, 1mA
     let tensao = 3
         corrente = 0.001 -- 1 mA
-        potencia = potenciaEletricaVI tensao correnteesperada = 0.003 -- 3 mW
+        potencia = potenciaEletricaVI tensao corrente
+        esperada = 0.003 -- 3 mW
     in abs (potencia- esperada) < 0.0001
 
 
@@ -299,10 +301,11 @@ testePotenciaRITorradeira =
 
 testePotenciaRIFerroSolda::Bool
 testePotenciaRIFerroSolda =
-    -- Ferro de solda: 20Ω, 2Alet resistencia = 20
-    corrente = 2
-    potencia = potenciaEletricaRI resistencia corrente
-    esperada = 80 -- 80W
+    -- Ferro de solda: 20Ω, 2A
+    let resistencia = 20
+        corrente = 2
+        potencia = potenciaEletricaRI resistencia corrente
+        esperada = 80 -- 80W
     in abs (potencia- esperada) < 0.1
 
 
@@ -352,10 +355,11 @@ testePotenciaVRTensaoZero =
     let tensao = 0 -- sem tensão
         resistencia = 50
         potencia = potenciaEletricaVR tensao resistencia
-    in abs potencia < 0.
+    in abs potencia < 0.001
 
-001testePotenciaVRAltaTensao::Bool
-    testePotenciaVRAltaTensao =
+
+testePotenciaVRAltaTensao::Bool
+testePotenciaVRAltaTensao =
     -- Sistema de potência: 13.8kV, 1000Ω
     let tensao = 13800
         resistencia = 1000
@@ -407,7 +411,8 @@ testePotenciaVRForno =
 
 testeResistenciaSerieBasica::Bool
 testeResistenciaSerieBasica =
-    let resistencias = [10, 20, 30] -- 10Ω, 20Ω, 30Ωtotal = resistenciaSerie resistencias
+    let resistencias = [10, 20, 30] -- 10Ω, 20Ω, 30Ω
+        total = resistenciaSerie resistencias
     in abs (total- 60) < 0.001 -- Rtotal = 60Ω
 
 
@@ -465,7 +470,8 @@ testeResistenciaSerieDecimais::Bool
 testeResistenciaSerieDecimais =
     let resistencias = [4.7, 2.2, 1.8, 6.8]
         total = resistenciaSerie resistencias
-        esperada = 15.5 -- soma diretain abs (total- esperada) < 0.01
+        esperada = 15.5 -- soma direta
+    in abs (total- esperada) < 0.01
 
 
 testeResistenciaSerieMuitosResistores::Bool
@@ -647,15 +653,16 @@ testeImpedanciaACCircuitoRLC =
     -- Circuito RLC: R = 10Ω, X = 24Ω
     let resistencia = 10
         reatancia = 24
-        impedancia = impedanciaAC resistencia reatanciaesperada = 26 -- √100+576 = 26Ω
+        impedancia = impedanciaAC resistencia reatancia
+        esperada = 26 -- √100+576 = 26Ω
     in abs (impedancia- esperada) < 0.1
 
 
 testeImpedanciaACReatanciaNegativa::Bool
 testeImpedanciaACReatanciaNegativa =
-    -- Reatância capacitiva (negativa): R = 8Ω, X =-6Ω
+    -- Reatância capacitiva (negativa): R = 8Ω, X = -6Ω
     let resistencia = 8
-        reatancia =-6 -- capacitiva
+        reatancia = -6 -- capacitiva
         impedancia = impedanciaAC resistencia reatancia
         esperada = 10 -- √64+36 =10Ω
     in abs (impedancia- esperada) < 0.001
@@ -768,7 +775,8 @@ testeRetangularParaPolarEixoReal =
 testeRetangularParaPolarEixoImaginario::Bool
 testeRetangularParaPolarEixoImaginario =
     -- Ponto no eixo imaginário positivo
-    let x = 0y = 9
+    let x = 0
+        y = 9
         (r, theta) = retangularParaPolar x y
     in abs (r- 9) < 0.001 && abs (theta- pi/2) < 0.01
 
@@ -776,7 +784,7 @@ testeRetangularParaPolarEixoImaginario =
 testeRetangularParaPolarQuadrante2::Bool
 testeRetangularParaPolarQuadrante2 =
     -- Segundo quadrante
-    let x =-3
+    let x = -3
         y = 4
         (r, theta) = retangularParaPolar x y
         rEsperado = 5
@@ -789,8 +797,8 @@ testeRetangularParaPolarQuadrante2 =
 testeRetangularParaPolarQuadrante3::Bool
 testeRetangularParaPolarQuadrante3 =
     -- Terceiro quadrante
-    let x =-5
-        y =-12
+    let x = -5
+        y = -12
         (r, theta) = retangularParaPolar x y
         rEsperado = 13 -- √25+144 = 13
         thetaEsperado = atan2 (-12) (-5)
@@ -811,7 +819,7 @@ testeConversaoRoundTrip =
 testeConversaoRoundTripComplexo::Bool
 testeConversaoRoundTripComplexo =
     -- Teste com valores complexos
-    let xOriginal =-7.5
+    let xOriginal = -7.5
         yOriginal = 2.3
         (r, theta) = retangularParaPolar xOriginal yOriginal
         (xFinal, yFinal) = polarParaRetangular r theta
@@ -1011,12 +1019,12 @@ executarTestesEngenhariaEletrica = do
     putStrLn $ "Baixa impedância: " ++ show testeImpedanciaACBaixaImpedancia
     putStrLn $ "Decimal: " ++ show testeImpedanciaACDecimal
     putStrLn "\n -- TESTES CONVERSÕES COORDENADAS --"
-    putStrLn $ "Polar→Retangular básico: " ++ show testePolarParaRetangularBasico
+    putStrLn $ "Polar -> Retangular básico: " ++ show testePolarParaRetangularBasico
     putStrLn $ "Ângulo 0°: " ++ show testePolarParaRetangularAngulo0
     putStrLn $ "Ângulo 90°: " ++ show testePolarParaRetangularAngulo90
     putStrLn $ "Ângulo 180°: " ++ show testePolarParaRetangularAngulo180
     putStrLn $ "Ângulo 270°: " ++ show testePolarParaRetangularAngulo270
-    putStrLn $ "Retangular→Polar básico: " ++ show testeRetangularParaPolarBasico
+    putStrLn $ "Retangular -> Polar básico: " ++ show testeRetangularParaPolarBasico
     putStrLn $ "Eixo real: " ++ show testeRetangularParaPolarEixoReal
     putStrLn $ "Eixo imaginário: " ++ show testeRetangularParaPolarEixoImaginario
     putStrLn $ "2° quadrante: " ++ show testeRetangularParaPolarQuadrante2
@@ -1036,111 +1044,111 @@ executarTestesEngenhariaEletrica = do
 
 testesEngenhariaEletrica::[(String, Bool)]
 testesEngenhariaEletrica = [
-    -- Lei de Ohm (10 testes)
-    ("Lei Ohm Básica", testeLeiOhmBasica),
-    ("Lei Ohm Lâmpada", testeLeiOhmLampada),
-    ("Lei Ohm Resistor Eletrônico", testeLeiOhmResistorEletronico),
-    ("Lei Ohm Motor Elétrico", testeLeiOhmMotorEletrico),
-    ("Lei Ohm Corrente Zero", testeLeiOhmCorrenteZero),
-    ("Lei Ohm Corrente Alta", testeLeiOhmCorrenteAlta),
-    ("Lei Ohm Microeletrônica", testeLeiOhmMicroeletronica),
-    ("Lei Ohm Transmissão", testeLeiOhmTransmissao),
-    ("Lei Ohm Decimal", testeLeiOhmDecimal),
-    ("Lei Ohm Precisão", testeLeiOhmPrecisao),
+        -- Lei de Ohm (10 testes)
+        ("Lei Ohm Básica", testeLeiOhmBasica),
+        ("Lei Ohm Lâmpada", testeLeiOhmLampada),
+        ("Lei Ohm Resistor Eletrônico", testeLeiOhmResistorEletronico),
+        ("Lei Ohm Motor Elétrico", testeLeiOhmMotorEletrico),
+        ("Lei Ohm Corrente Zero", testeLeiOhmCorrenteZero),
+        ("Lei Ohm Corrente Alta", testeLeiOhmCorrenteAlta),
+        ("Lei Ohm Microeletrônica", testeLeiOhmMicroeletronica),
+        ("Lei Ohm Transmissão", testeLeiOhmTransmissao),
+        ("Lei Ohm Decimal", testeLeiOhmDecimal),
+        ("Lei Ohm Precisão", testeLeiOhmPrecisao),
 
-    -- Potência V×I (10 testes)
-    ("Potência VI Básica", testePotenciaVIBasica),
-    ("Potência VI LED", testePotenciaVILED),
-    ("Potência VI Chuveiro", testePotenciaVIChuveiro),
-    ("Potência VI Microprocessador", testePotenciaVIMicroprocessador),
-    ("Potência VI Carregador", testePotenciaVICarregadorCelular),
-    ("Potência VI Zero", testePotenciaVIZero),
-    ("Potência VI Alta Tensão", testePotenciaVIAltaTensao),
-    ("Potência VI Baixa", testePotenciaVIBaixaPotencia),
-    ("Potência VI Decimal", testePotenciaVIDecimal),
-    ("Potência VI Dispositivo 9V", testePotenciaVIDispositivo9V),
+        -- Potência V×I (10 testes)
+        ("Potência VI Básica", testePotenciaVIBasica),
+        ("Potência VI LED", testePotenciaVILED),
+        ("Potência VI Chuveiro", testePotenciaVIChuveiro),
+        ("Potência VI Microprocessador", testePotenciaVIMicroprocessador),
+        ("Potência VI Carregador", testePotenciaVICarregadorCelular),
+        ("Potência VI Zero", testePotenciaVIZero),
+        ("Potência VI Alta Tensão", testePotenciaVIAltaTensao),
+        ("Potência VI Baixa", testePotenciaVIBaixaPotencia),
+        ("Potência VI Decimal", testePotenciaVIDecimal),
+        ("Potência VI Dispositivo 9V", testePotenciaVIDispositivo9V),
 
-    -- Potência R×I² (10 testes)
-    ("Potência RI Básica", testePotenciaRIBasica),
-    ("Potência RI Aquecimento", testePotenciaRIResistorAquecimento),
-    ("Potência RI Filamento", testePotenciaRIFilamentoLampada),
-    ("Potência RI Fio", testePotenciaRIFioTransmissao),
-    ("Potência RI Corrente Zero", testePotenciaRICorrenteZero),
-    ("Potência RI Baixa R", testePotenciaRIBaixaResistencia),
-    ("Potência RI Alta R", testePotenciaRIAltaResistencia),
-    ("Potência RI Decimal", testePotenciaRIDecimal),
-    ("Potência RI Torradeira", testePotenciaRITorradeira),
-    ("Potência RI Ferro Solda", testePotenciaRIFerroSolda),
+        -- Potência R×I² (10 testes)
+        ("Potência RI Básica", testePotenciaRIBasica),
+        ("Potência RI Aquecimento", testePotenciaRIResistorAquecimento),
+        ("Potência RI Filamento", testePotenciaRIFilamentoLampada),
+        ("Potência RI Fio", testePotenciaRIFioTransmissao),
+        ("Potência RI Corrente Zero", testePotenciaRICorrenteZero),
+        ("Potência RI Baixa R", testePotenciaRIBaixaResistencia),
+        ("Potência RI Alta R", testePotenciaRIAltaResistencia),
+        ("Potência RI Decimal", testePotenciaRIDecimal),
+        ("Potência RI Torradeira", testePotenciaRITorradeira),
+        ("Potência RI Ferro Solda", testePotenciaRIFerroSolda),
 
-    -- Potência V²/R (10 testes)
-    ("Potência VR Básica", testePotenciaVRBasica),
-    ("Potência VR Lâmpada", testePotenciaVRLampadaDomestica),
-    ("Potência VR Aquecedor", testePotenciaVRAquecedor),
-    ("Potência VR Eletrônico", testePotenciaVRCircuitoEletronico),
-    ("Potência VR Tensão Zero", testePotenciaVRTensaoZero),
-    ("Potência VR Alta Tensão", testePotenciaVRAltaTensao),
-    ("Potência VR Resistor Pequeno", testePotenciaVRResistorPequeno),
-    ("Potência VR Decimal", testePotenciaVRDecimal),
-    ("Potência VR Secador", testePotenciaVRSecadorCabelo),
-    ("Potência VR Forno", testePotenciaVRForno),
+        -- Potência V²/R (10 testes)
+        ("Potência VR Básica", testePotenciaVRBasica),
+        ("Potência VR Lâmpada", testePotenciaVRLampadaDomestica),
+        ("Potência VR Aquecedor", testePotenciaVRAquecedor),
+        ("Potência VR Eletrônico", testePotenciaVRCircuitoEletronico),
+        ("Potência VR Tensão Zero", testePotenciaVRTensaoZero),
+        ("Potência VR Alta Tensão", testePotenciaVRAltaTensao),
+        ("Potência VR Resistor Pequeno", testePotenciaVRResistorPequeno),
+        ("Potência VR Decimal", testePotenciaVRDecimal),
+        ("Potência VR Secador", testePotenciaVRSecadorCabelo),
+        ("Potência VR Forno", testePotenciaVRForno),
 
-    -- Resistência Série (10 testes)
-    ("Resistência Série Básica", testeResistenciaSerieBasica),
-    ("Resistência Série Um", testeResistenciaSerieUmResistor),
-    ("Resistência Série Vazia", testeResistenciaSerieVazia),
-    ("Resistência Série LED", testeResistenciaSerieCircuitoLED),
-    ("Resistência Série Divisor", testeResistenciaSerieDivisorTensao),
-    ("Resistência Série Alta", testeResistenciaSerieAltosValores),
-    ("Resistência Série Baixa", testeResistenciaSerieBaixosValores),
-    ("Resistência Série Decimal", testeResistenciaSerieDecimais),
-    ("Resistência Série Muitos", testeResistenciaSerieMuitosResistores),
-    ("Resistência Série Variados", testeResistenciaSerieValoresVariados),
+        -- Resistência Série (10 testes)
+        ("Resistência Série Básica", testeResistenciaSerieBasica),
+        ("Resistência Série Um", testeResistenciaSerieUmResistor),
+        ("Resistência Série Vazia", testeResistenciaSerieVazia),
+        ("Resistência Série LED", testeResistenciaSerieCircuitoLED),
+        ("Resistência Série Divisor", testeResistenciaSerieDivisorTensao),
+        ("Resistência Série Alta", testeResistenciaSerieAltosValores),
+        ("Resistência Série Baixa", testeResistenciaSerieBaixosValores),
+        ("Resistência Série Decimal", testeResistenciaSerieDecimais),
+        ("Resistência Série Muitos", testeResistenciaSerieMuitosResistores),
+        ("Resistência Série Variados", testeResistenciaSerieValoresVariados),
 
-    -- Resistência Paralelo (10 testes)
-    ("Resistência Paralelo Básica", testeResistenciaParaleloBasica),
-    ("Resistência Paralelo Iguais", testeResistenciaParaleloIguais),
-    ("Resistência Paralelo Três", testeResistenciaParaleloTresIguais),
-    ("Resistência Paralelo Um", testeResistenciaParaleloUmResistor),
-    ("Resistência Paralelo Alta", testeResistenciaParaleloValoresAltos),
-    ("Resistência Paralelo Baixa", testeResistenciaParaleloBaixosValores),
-    ("Resistência Paralelo Assimétrico", testeResistenciaParaleloAssimetrico),
-    ("Resistência Paralelo Quatro", testeResistenciaParaleloQuatroResistores),
-    ("Resistência Paralelo Decimal", testeResistenciaParaleloDecimais),
-    ("Resistência Paralelo Prático", testeResistenciaParaleloCircuitoPratico),
+        -- Resistência Paralelo (10 testes)
+        ("Resistência Paralelo Básica", testeResistenciaParaleloBasica),
+        ("Resistência Paralelo Iguais", testeResistenciaParaleloIguais),
+        ("Resistência Paralelo Três", testeResistenciaParaleloTresIguais),
+        ("Resistência Paralelo Um", testeResistenciaParaleloUmResistor),
+        ("Resistência Paralelo Alta", testeResistenciaParaleloValoresAltos),
+        ("Resistência Paralelo Baixa", testeResistenciaParaleloBaixosValores),
+        ("Resistência Paralelo Assimétrico", testeResistenciaParaleloAssimetrico),
+        ("Resistência Paralelo Quatro", testeResistenciaParaleloQuatroResistores),
+        ("Resistência Paralelo Decimal", testeResistenciaParaleloDecimais),
+        ("Resistência Paralelo Prático", testeResistenciaParaleloCircuitoPratico),
 
-    -- Impedância AC (10 testes)
-    ("Impedância AC Básica", testeImpedanciaACBasica),
-    ("Impedância AC Resistivo", testeImpedanciaACResistivoPuro),
-    ("Impedância AC Reativo", testeImpedanciaACReativoPuro),
-    ("Impedância AC Motor", testeImpedanciaACMotorCA),
-    ("Impedância AC Transformador", testeImpedanciaACTransformador),
-    ("Impedância AC RLC", testeImpedanciaACCircuitoRLC),
-    ("Impedância AC Negativa", testeImpedanciaACReatanciaNegativa),
-    ("Impedância AC Alta", testeImpedanciaACValoresAltos),
-    ("Impedância AC Baixa", testeImpedanciaACBaixaImpedancia),
-    ("Impedância AC Decimal", testeImpedanciaACDecimal),
+        -- Impedância AC (10 testes)
+        ("Impedância AC Básica", testeImpedanciaACBasica),
+        ("Impedância AC Resistivo", testeImpedanciaACResistivoPuro),
+        ("Impedância AC Reativo", testeImpedanciaACReativoPuro),
+        ("Impedância AC Motor", testeImpedanciaACMotorCA),
+        ("Impedância AC Transformador", testeImpedanciaACTransformador),
+        ("Impedância AC RLC", testeImpedanciaACCircuitoRLC),
+        ("Impedância AC Negativa", testeImpedanciaACReatanciaNegativa),
+        ("Impedância AC Alta", testeImpedanciaACValoresAltos),
+        ("Impedância AC Baixa", testeImpedanciaACBaixaImpedancia),
+        ("Impedância AC Decimal", testeImpedanciaACDecimal),
 
-    -- Conversões Coordenadas (15 testes)
-    ("Polar→Retangular Básico", testePolarParaRetangularBasico),
-    ("Polar→Retangular 0°", testePolarParaRetangularAngulo0),
-    ("Polar→Retangular 90°", testePolarParaRetangularAngulo90),
-    ("Polar→Retangular 180°", testePolarParaRetangularAngulo180),
-    ("Polar→Retangular 270°", testePolarParaRetangularAngulo270),
-    ("Retangular→Polar Básico", testeRetangularParaPolarBasico),
-    ("Retangular→Polar Eixo Real", testeRetangularParaPolarEixoReal),
-    ("Retangular→Polar Eixo Imag", testeRetangularParaPolarEixoImaginario),
-    ("Retangular→Polar Q2", testeRetangularParaPolarQuadrante2),
-    ("Retangular→Polar Q3", testeRetangularParaPolarQuadrante3),
-    ("Conversão Round Trip", testeConversaoRoundTrip),
-    ("Conversão Round Trip Complexo", testeConversaoRoundTripComplexo),
-    ("Polar→Retangular Fasor", testePolarParaRetangularFasor),
-    ("Retangular→Polar Impedância", testeRetangularParaPolarImpedancia),
-    ("Conversão Origem Zero", testeConversaoOrigemZero),
+        -- Conversões Coordenadas (15 testes)
+        ("Polar→Retangular Básico", testePolarParaRetangularBasico),
+        ("Polar→Retangular 0°", testePolarParaRetangularAngulo0),
+        ("Polar→Retangular 90°", testePolarParaRetangularAngulo90),
+        ("Polar→Retangular 180°", testePolarParaRetangularAngulo180),
+        ("Polar→Retangular 270°", testePolarParaRetangularAngulo270),
+        ("Retangular→Polar Básico", testeRetangularParaPolarBasico),
+        ("Retangular→Polar Eixo Real", testeRetangularParaPolarEixoReal),
+        ("Retangular→Polar Eixo Imag", testeRetangularParaPolarEixoImaginario),
+        ("Retangular→Polar Q2", testeRetangularParaPolarQuadrante2),
+        ("Retangular→Polar Q3", testeRetangularParaPolarQuadrante3),
+        ("Conversão Round Trip", testeConversaoRoundTrip),
+        ("Conversão Round Trip Complexo", testeConversaoRoundTripComplexo),
+        ("Polar→Retangular Fasor", testePolarParaRetangularFasor),
+        ("Retangular→Polar Impedância", testeRetangularParaPolarImpedancia),
+        ("Conversão Origem Zero", testeConversaoOrigemZero),
 
-    -- Casos Reais (5 testes)
-    ("Caso Real Residencial", testeCasoRealCircuitoResidencial),
-    ("Caso Real Motor Trifásico", testeCasoRealMotorTrifasico),
-    ("Caso Real Divisor Tensão", testeCasoRealDivisorTensao),
-    ("Caso Real Carregador", testeCasoRealCarregadorCelular),
-    ("Caso Real Filtro", testeCasoRealFiltroPassaBaixa)
-]
+        -- Casos Reais (5 testes)
+        ("Caso Real Residencial", testeCasoRealCircuitoResidencial),
+        ("Caso Real Motor Trifásico", testeCasoRealMotorTrifasico),
+        ("Caso Real Divisor Tensão", testeCasoRealDivisorTensao),
+        ("Caso Real Carregador", testeCasoRealCarregadorCelular),
+        ("Caso Real Filtro", testeCasoRealFiltroPassaBaixa)
+    ]

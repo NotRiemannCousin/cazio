@@ -8,10 +8,10 @@ import Engineering.Mechanical
 testeTorqueBasico::Bool
 testeTorqueBasico =
     let forca = 100 -- 100 N
-            raio = 0.5 -- 0.5 m
+        raio = 0.5 -- 0.5 m
         angulo = pi/2 -- 90° (força perpendicular)
         torque = calcularTorque forca raio angulo
-        esperado = 100 * 0.5 * sin(pi/2),
+        esperado = 100 * 0.5 * sin(pi/2)
 
     -- 50 N·m
     in abs (torque- esperado) < 0.001
@@ -20,7 +20,7 @@ testeTorqueBasico =
 testeTorqueForcaPerpendicular::Bool
 testeTorqueForcaPerpendicular =
     let forca = 200
-            raio = 0.3
+        raio = 0.3
         angulo = pi/2 -- 90°, sin(90°) = 1
         torque = calcularTorque forca raio angulo
         esperado = 200 * 0.3 * 1 -- 60 N·m
@@ -30,7 +30,7 @@ testeTorqueForcaPerpendicular =
 testeTorqueForcaParalela::Bool
 testeTorqueForcaParalela =
     let forca = 150
-            raio = 0.4
+        raio = 0.4
         angulo = 0 -- 0°, sin(0°) = 0
         torque = calcularTorque forca raio angulo
     in abs torque < 0.001 -- deve ser zero
@@ -39,19 +39,21 @@ testeTorqueForcaParalela =
 testeTorqueAngulo45Graus::Bool
 testeTorqueAngulo45Graus =
     let forca = 100
-            raio = 1.0
+        raio = 1.0
         angulo = pi/4 -- 45°
         torque = calcularTorque forca raio angulo
-        esperado = 100 * 1.0 * sin(pi/4),
+        esperado = 100 * 1.0 * sin(pi/4)
 
     -- 100 * √2/2 ≈ 70.71
-    in abs (torque- esperado) < 0.01testeTorqueAngulo30Graus::Bool
-            testeTorqueAngulo30Graus =
+    in abs (torque- esperado) < 0.01
+
+testeTorqueAngulo30Graus::Bool
+testeTorqueAngulo30Graus =
         let forca = 120
-        raio = 0.8
-        angulo = pi/6 -- 30°, sin(30°) = 0.5
-        torque = calcularTorque forca raio angulo
-        esperado = 120 * 0.8 * 0.5 -- 48 N·m
+            raio = 0.8
+            angulo = pi/6 -- 30°, sin(30°) = 0.5
+            torque = calcularTorque forca raio angulo
+            esperado = 120 * 0.8 * 0.5 -- 48 N·m
     in abs (torque- esperado) < 0.001
 
 
@@ -59,7 +61,7 @@ testeTorqueChaveInglesa::Bool
 testeTorqueChaveInglesa =
     -- Caso real: chave inglesa de 25cm aplicando 80N
     let forca = 80
-            raio = 0.25
+        raio = 0.25
         angulo = pi/2
         torque = calcularTorque forca raio angulo
         esperado = 20 -- 20 N·m
@@ -70,7 +72,7 @@ testeTorqueMotorEletrico::Bool
 testeTorqueMotorEletrico =
     -- Motor elétrico: força tangencial no rotor
     let forca = 500
-            raio = 0.15 -- raio do rotor
+        raio = 0.15 -- raio do rotor
         angulo = pi/2
         torque = calcularTorque forca raio angulo
         esperado = 75 -- 75 N·m
@@ -80,7 +82,7 @@ testeTorqueMotorEletrico =
 testeTorqueValorGrande::Bool
 testeTorqueValorGrande =
     let forca = 10000 -- 10 kN
-            raio = 2.0 -- 2 m
+        raio = 2.0 -- 2 m
         angulo = pi/2
         torque = calcularTorque forca raio angulo
         esperado = 20000 -- 20 kN·m
@@ -90,7 +92,7 @@ testeTorqueValorGrande =
 testeTorqueValorPequeno::Bool
 testeTorqueValorPequeno =
     let forca = 0.1 -- 100 mN
-            raio = 0.001 -- 1 mm
+        raio = 0.001 -- 1 mm
         angulo = pi/2
         torque = calcularTorque forca raio angulo
         esperado = 0.0001 -- 0.1 mN·m
@@ -100,7 +102,8 @@ testeTorqueValorPequeno =
 testeTorquePrecisao::Bool
 testeTorquePrecisao =
     let forca = 123.45
-            raio = 0.6789angulo = 1.2345 -- ângulo em radianos
+        raio = 0.6789
+        angulo = 1.2345 -- ângulo em radianos
         torque = calcularTorque forca raio angulo
         esperado = 123.45 * 0.6789 * sin(1.2345)
     in abs (torque- esperado) < 0.01
@@ -111,7 +114,7 @@ testeTorquePrecisao =
 testeVelocidadeAngularBasica::Bool
 testeVelocidadeAngularBasica =
     let velocidade = 10 -- 10 m/s
-            raio = 2 -- 2 m
+        raio = 2 -- 2 m
         omega = velocidadeAngular velocidade raio
         esperada = 5 -- 5 rad/s
     in abs (omega- esperada) < 0.001
@@ -121,7 +124,7 @@ testeVelocidadeAngularRoda::Bool
 testeVelocidadeAngularRoda =
     -- Roda de carro: v = 60 km/h = 16.67 m/s, raio = 0.3 m
     let velocidade = 16.67 -- ~60 km/h
-            raio = 0.3
+        raio = 0.3
         omega = velocidadeAngular velocidade raio
         esperada = 16.67 / 0.3 -- ~55.57 rad/s
     in abs (omega- esperada) < 0.1
@@ -130,7 +133,7 @@ testeVelocidadeAngularRoda =
 testeVelocidadeAngularEngrenagem::Bool
 testeVelocidadeAngularEngrenagem =
     let velocidade = 5 -- velocidade tangencial
-            raio = 0.05 -- engrenagem pequena, raio 5 cm
+        raio = 0.05 -- engrenagem pequena, raio 5 cm
         omega = velocidadeAngular velocidade raio
         esperada = 100 -- 100 rad/s
     in abs (omega- esperada) < 0.001
@@ -140,7 +143,7 @@ testeVelocidadeAngularTurbina::Bool
 testeVelocidadeAngularTurbina =
     -- Turbina de vento
     let velocidade = 80 -- ponta da pá a 80 m/s
-            raio = 40 -- raio da turbina 40 m
+        raio = 40 -- raio da turbina 40 m
         omega = velocidadeAngular velocidade raio
         esperada = 2 -- 2 rad/s
     in abs (omega- esperada) < 0.001
@@ -149,7 +152,7 @@ testeVelocidadeAngularTurbina =
 testeVelocidadeAngularZero::Bool
 testeVelocidadeAngularZero =
     let velocidade = 0 -- parado
-            raio = 1
+        raio = 1
         omega = velocidadeAngular velocidade raio
     in abs omega < 0.001
 
@@ -157,7 +160,7 @@ testeVelocidadeAngularZero =
 testeVelocidadeAngularVelocidadeAlta::Bool
 testeVelocidadeAngularVelocidadeAlta =
     let velocidade = 1000 -- muito rápido
-            raio = 0.1
+        raio = 0.1
         omega = velocidadeAngular velocidade raio
         esperada = 10000 -- 10000 rad/s
     in abs (omega- esperada) < 1.0
@@ -166,7 +169,7 @@ testeVelocidadeAngularVelocidadeAlta =
 testeVelocidadeAngularRaioGrande::Bool
 testeVelocidadeAngularRaioGrande =
     let velocidade = 30
-            raio = 100 -- raio muito grande
+        raio = 100 -- raio muito grande
         omega = velocidadeAngular velocidade raio
         esperada = 0.3 -- 0.3 rad/s
     in abs (omega- esperada) < 0.001
@@ -175,7 +178,7 @@ testeVelocidadeAngularRaioGrande =
 testeVelocidadeAngularRaioPequeno::Bool
 testeVelocidadeAngularRaioPequeno =
     let velocidade = 5
-            raio = 0.001 -- 1 mm
+        raio = 0.001 -- 1 mm
         omega = velocidadeAngular velocidade raio
         esperada = 5000 -- 5000 rad/s
     in abs (omega- esperada) < 1.0
@@ -184,7 +187,7 @@ testeVelocidadeAngularRaioPequeno =
 testeVelocidadeAngularDecimal::Bool
 testeVelocidadeAngularDecimal =
     let velocidade = 12.345
-            raio = 2.468
+        raio = 2.468
         omega = velocidadeAngular velocidade raio
         esperada = 12.345 / 2.468
     in abs (omega- esperada) < 0.001
@@ -194,7 +197,7 @@ testeVelocidadeAngularRPM::Bool
 testeVelocidadeAngularRPM =
     -- Conversão para RPM: ω = 100 rad/s = 100 * 60/(2π) RPM ≈ 955 RPM
     let velocidade = 31.416 -- π * 10
-            raio = 0.1
+        raio = 0.1
         omega = velocidadeAngular velocidade raio
         esperada = 314.16 -- π * 100 rad/s
     in abs (omega- esperada) < 0.1
@@ -205,7 +208,7 @@ testeVelocidadeAngularRPM =
 testeAceleracaocentripetaBasica::Bool
 testeAceleracaocentripetaBasica =
     let velocidade = 20 -- 20 m/s
-            raio = 50 -- 50 m
+        raio = 50 -- 50 m
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 400/50 -- 8 m/s²
     in abs (aceleracao- esperada) < 0.001
@@ -215,7 +218,7 @@ testeAceleracaocentripetaCarro::Bool
 testeAceleracaocentripetaCarro =
     -- Carro fazendo curva: 60 km/h (16.67 m/s) em curva de raio 80m
     let velocidade = 16.67
-            raio = 80
+        raio = 80
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 16.67^2 / 80 -- ~3.47 m/s²
     in abs (aceleracao- esperada) < 0.1
@@ -225,7 +228,7 @@ testeAceleracaocentripetaAviao::Bool
 testeAceleracaocentripetaAviao =
     -- Avião em manobra: 250 m/s, raio 1000m
     let velocidade = 250
-            raio = 1000
+        raio = 1000
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 62.5 -- 62.5 m/s² (~6.4g)
     in abs (aceleracao- esperada) < 0.1
@@ -235,7 +238,7 @@ testeAceleracaocentripetaSatelite::Bool
 testeAceleracaocentripetaSatelite =
     -- Satélite em órbita baixa: ~7800 m/s, raio ~6.67e6 m
     let velocidade = 7800
-            raio = 6670000 -- ~raio da Terra + altitude
+        raio = 6670000 -- ~raio da Terra + altitude
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 7800^2 / 6670000 -- ~9.1 m/s² (gravidade!)
     in abs (aceleracao- esperada) < 0.5
@@ -245,7 +248,7 @@ testeAceleracaocentripetaCentrifuga::Bool
 testeAceleracaocentripetaCentrifuga =
     -- Centrífuga de laboratório: alta rotação
     let velocidade = 100 -- 100 m/s na borda
-            raio = 0.2 -- raio 20 cm
+        raio = 0.2 -- raio 20 cm
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 50000 -- 50000 m/s² (~5000g!)
     in abs (aceleracao- esperada) < 100
@@ -254,7 +257,7 @@ testeAceleracaocentripetaCentrifuga =
 testeAceleracaocentripetaZeroVelocidade::Bool
 testeAceleracaocentripetaZeroVelocidade =
     let velocidade = 0
-            raio = 10
+        raio = 10
         aceleracao = aceleracaocentripeta velocidade raio
     in abs aceleracao < 0.001
 
@@ -262,7 +265,7 @@ testeAceleracaocentripetaZeroVelocidade =
 testeAceleracaocentripetaVelocidadeBaixa::Bool
 testeAceleracaocentripetaVelocidadeBaixa =
     let velocidade = 1 -- 1 m/s (pedestres)
-            raio = 10
+        raio = 10
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 0.1 -- 0.1 m/s²
     in abs (aceleracao- esperada) < 0.001
@@ -272,7 +275,7 @@ testeAceleracaocentripetaRaioGrande::Bool
 testeAceleracaocentripetaRaioGrande =
     -- curva muito suave
     let velocidade = 30
-            raio = 10000
+        raio = 10000
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 0.09 -- 0.09 m/s²
     in abs (aceleracao- esperada) < 0.001
@@ -281,7 +284,7 @@ testeAceleracaocentripetaRaioGrande =
 testeAceleracaocentripetaRaioPequeno::Bool
 testeAceleracaocentripetaRaioPequeno =
     let velocidade = 5
-            raio = 0.1 -- curva muito fechada
+        raio = 0.1 -- curva muito fechada
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 250 -- 250 m/s²
     in abs (aceleracao- esperada) < 0.1
@@ -290,7 +293,7 @@ testeAceleracaocentripetaRaioPequeno =
 testeAceleracaocentripetaPrecisao::Bool
 testeAceleracaocentripetaPrecisao =
     let velocidade = 15.678
-            raio = 23.456
+        raio = 23.456
         aceleracao = aceleracaocentripeta velocidade raio
         esperada = 15.678^2 / 23.456
     in abs (aceleracao- esperada) < 0.001
@@ -301,7 +304,7 @@ testeAceleracaocentripetaPrecisao =
 testeEnergiaCineticaBasica::Bool
 testeEnergiaCineticaBasica =
     let massa = 10 -- 10 kg
-            velocidade = 20 -- 20 m/s
+        velocidade = 20 -- 20 m/s
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 10 * 400 -- 2000 J
     in abs (energia- esperada) < 0.001
@@ -311,7 +314,7 @@ testeEnergiaCineticaCarro::Bool
 testeEnergiaCineticaCarro =
     -- Carro de 1200 kg a 60 km/h (16.67 m/s)
     let massa = 1200
-            velocidade = 16.67
+        velocidade = 16.67
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 1200 * 16.67^2 -- ~166.7 kJ
     in abs (energia- esperada) < 1000
@@ -321,15 +324,16 @@ testeEnergiaCineticaBala::Bool
 testeEnergiaCineticaBala =
     -- Bala de rifle: 10g a 800 m/s
     let massa = 0.01
-            velocidade = 800 -- 10 g
+        velocidade = 800 -- 10 g
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 0.01 * 800^2 -- 3200 J
     in abs (energia- esperada) < 1.0
-    testeEnergiaCineticaTrem::Bool
+    
+testeEnergiaCineticaTrem::Bool
 testeEnergiaCineticaTrem =
     -- Trem: 500 toneladas a 100 km/h (27.78 m/s)
     let massa = 500000 -- 500 toneladas
-            velocidade = 27.78
+        velocidade = 27.78
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 500000 * 27.78^2 -- ~193 MJ
     in abs (energia- esperada) < 100000
@@ -339,7 +343,7 @@ testeEnergiaCineticaPessoa::Bool
 testeEnergiaCineticaPessoa =
     -- Pessoa correndo: 70 kg a 5 m/s
     let massa = 70
-            velocidade = 5
+        velocidade = 5
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 70 * 25 -- 875 J
     in abs (energia- esperada) < 0.1
@@ -348,7 +352,7 @@ testeEnergiaCineticaPessoa =
 testeEnergiaCineticaVelocidadeZero::Bool
 testeEnergiaCineticaVelocidadeZero =
     let massa = 100
-            velocidade = 0 -- parado
+        velocidade = 0 -- parado
         energia = energiaCinetica massa velocidade
     in abs energia < 0.001
 
@@ -356,7 +360,7 @@ testeEnergiaCineticaVelocidadeZero =
 testeEnergiaCineticaMassaZero::Bool
 testeEnergiaCineticaMassaZero =
     let massa = 0 -- sem massa
-            velocidade = 100
+        velocidade = 100
         energia = energiaCinetica massa velocidade
     in abs energia < 0.001
 
@@ -365,7 +369,7 @@ testeEnergiaCineticaVelocidadeAlta::Bool
 testeEnergiaCineticaVelocidadeAlta =
     -- Objeto a velocidades relativísticas (ainda usando mecânica clássica)
     let massa = 1
-            velocidade = 100000 -- 100 km/s
+        velocidade = 100000 -- 100 km/s
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 1 * 100000^2 -- 5e9 J = 5 GJ
     in abs (energia- esperada) < 1e6
@@ -375,7 +379,7 @@ testeEnergiaCineticaMassaGrande::Bool
 testeEnergiaCineticaMassaGrande =
     -- Navio: 100.000 toneladas a 10 m/s
     let massa = 100000000 -- 100.000 toneladas
-            velocidade = 10
+        velocidade = 10
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 100000000 * 100 -- 5e9 J
     in abs (energia- esperada) < 1e6
@@ -384,7 +388,7 @@ testeEnergiaCineticaMassaGrande =
 testeEnergiaCineticaDecimal::Bool
 testeEnergiaCineticaDecimal =
     let massa = 12.345
-            velocidade = 6.789
+        velocidade = 6.789
         energia = energiaCinetica massa velocidade
         esperada = 0.5 * 12.345 * 6.789^2
     in abs (energia- esperada) < 0.01
@@ -395,7 +399,7 @@ testeEnergiaCineticaDecimal =
 testeEnergiaPotencialBasica::Bool
 testeEnergiaPotencialBasica =
     let massa = 5 -- 5 kg
-            altura = 10 -- 10 m
+        altura = 10 -- 10 m
         energia = energiaPotencial massa altura
         esperada = 5 * 9.81 * 10 -- 490.5 J
     in abs (energia- esperada) < 0.1
@@ -405,7 +409,7 @@ testeEnergiaPotencialPessoa::Bool
 testeEnergiaPotencialPessoa =
     -- Pessoa de 70kg subindo escada de 3m
     let massa = 70
-            altura = 3
+        altura = 3
         energia = energiaPotencial massa altura
         esperada = 70 * 9.81 * 3 -- ~2060 J
     in abs (energia- esperada) < 1.0
@@ -415,7 +419,7 @@ testeEnergiaPotencialElevador::Bool
 testeEnergiaPotencialElevador =
     -- Elevador com 8 pessoas (560 kg) subindo 50 m
     let massa = 560
-            altura = 50
+        altura = 50
         energia = energiaPotencial massa altura
         esperada = 560 * 9.81 * 50 -- ~275 kJ
     in abs (energia- esperada) < 100
@@ -425,7 +429,7 @@ testeEnergiaPotencialHidroeletrica::Bool
 testeEnergiaPotencialHidroeletrica =
     -- Represa: 1 tonelada de água a 100m de altura
     let massa = 1000 -- 1 tonelada
-            altura = 100
+        altura = 100
         energia = energiaPotencial massa altura
         esperada = 1000 * 9.81 * 100 -- 981 kJ
     in abs (energia- esperada) < 100
@@ -435,7 +439,7 @@ testeEnergiaPotencialMontanha::Bool
 testeEnergiaPotencialMontanha =
     -- Escalador de 80kg no topo de montanha de 3000m
     let massa = 80
-            altura = 3000
+        altura = 3000
         energia = energiaPotencial massa altura
         esperada = 80 * 9.81 * 3000 -- ~2.35 MJ
     in abs (energia- esperada) < 1000
@@ -444,7 +448,7 @@ testeEnergiaPotencialMontanha =
 testeEnergiaPotencialAlturaZero::Bool
 testeEnergiaPotencialAlturaZero =
     let massa = 100
-            altura = 0 -- no nível de referência
+        altura = 0 -- no nível de referência
         energia = energiaPotencial massa altura
     in abs energia < 0.001
 
@@ -452,7 +456,7 @@ testeEnergiaPotencialAlturaZero =
 testeEnergiaPotencialMassaZero::Bool
 testeEnergiaPotencialMassaZero =
     let massa = 0 -- sem massa
-            altura = 100
+        altura = 100
         energia = energiaPotencial massa altura
     in abs energia < 0.001
 
@@ -461,7 +465,7 @@ testeEnergiaPotencialAlturaGrande::Bool
 testeEnergiaPotencialAlturaGrande =
     -- Satélite a 400 km de altitude
     let massa = 1000 -- 1 tonelada
-            altura = 400000 -- 400 km
+        altura = 400000 -- 400 km
         energia = energiaPotencial massa altura
         esperada = 1000 * 9.81 * 400000 -- ~3.9 GJ
     in abs (energia- esperada) < 1e6
@@ -470,7 +474,7 @@ testeEnergiaPotencialAlturaGrande =
 testeEnergiaPotencialDecimal::Bool
 testeEnergiaPotencialDecimal =
     let massa = 12.345
-            altura = 67.89
+        altura = 67.89
         energia = energiaPotencial massa altura
         esperada = 12.345 * 9.81 * 67.89
     in abs (energia- esperada) < 1.0
@@ -480,7 +484,7 @@ testeEnergiaPotencialPrecisaoGravidade::Bool
 testeEnergiaPotencialPrecisaoGravidade =
     -- Verificar se usa g = 9.81 m/s²
     let massa = 1
-            altura = 1
+        altura = 1
         energia = energiaPotencial massa altura
         esperada = 9.81 -- exatamente g
     in abs (energia- esperada) < 0.01
@@ -491,14 +495,14 @@ testeEnergiaPotencialPrecisaoGravidade =
 testeCentroMassaBasico::Bool
 testeCentroMassaBasico =
     let pontos = [(2, 1), (4, 3), (6, 5)] -- (massa, posição)
-            centro = centroMassaX pontos -- Centro = (2*1 + 4*3 + 6*5) / (2+4+6) = 44/12 = 3.67
+        centro = centroMassaX pontos -- Centro = (2*1 + 4*3 + 6*5) / (2+4+6) = 44/12 = 3.67
         esperado = 44/12in abs (centro- esperado) < 0.01
 
 
 testeCentroMassaDoisPontos::Bool
 testeCentroMassaDoisPontos =
     let pontos = [(10, 0), (10, 10)] -- massas iguais
-            centro = centroMassaX pontos
+        centro = centroMassaX pontos
         esperado = 5 -- ponto médio
     in abs (centro- esperado) < 0.001
 
@@ -506,7 +510,7 @@ testeCentroMassaDoisPontos =
 testeCentroMassaMassasIguais::Bool
 testeCentroMassaMassasIguais =
     let pontos = [(1,-2), (1, 0), (1, 2), (1, 4)] -- massas unitárias
-            centro = centroMassaX pontos
+        centro = centroMassaX pontos
         esperado = (-2 + 0 + 2 + 4) / 4 -- média aritmética = 1
     in abs (centro- esperado) < 0.001
 
@@ -514,7 +518,7 @@ testeCentroMassaMassasIguais =
 testeCentroMassaMassasDiferentes::Bool
 testeCentroMassaMassasDiferentes =
     let pontos = [(1, 0), (3, 10)] -- massa 3x maior em x=10
-            centro = centroMassaX pontos -- (1*0 + 3*10) / (1+3) = 30/4 = 7.5
+        centro = centroMassaX pontos -- (1*0 + 3*10) / (1+3) = 30/4 = 7.5
         esperado = 7.5
     in abs (centro- esperado) < 0.001
 
@@ -523,7 +527,7 @@ testeCentroMassaBarra::Bool
 testeCentroMassaBarra =
     -- Barra uniforme discretizada em 3 pontos
     let pontos = [(1, 0), (1, 1), (1, 2)] -- massa uniforme
-            centro = centroMassaX pontos
+        centro = centroMassaX pontos
         esperado = 1 -- centro geométrico
     in abs (centro- esperado) < 0.001
 
@@ -532,7 +536,7 @@ testeCentroMassaCorpoL::Bool
 testeCentroMassaCorpoL =
     -- Corpo em L: duas barras perpendiculares
     let pontos = [(2, 0.5), (2, 2.5)] -- centroides das barras
-            centro = centroMassaX pontos
+        centro = centroMassaX pontos
         esperado = 1.5 -- centro entre as barras
     in abs (centro- esperado) < 0.001
 
@@ -541,23 +545,24 @@ testeCentroMassaVeiculo::Bool
 testeCentroMassaVeiculo =
     -- Veículo: motor (300kg) em x=1m, carroceria (700kg) em x=3m
     let pontos = [(300, 1), (700, 3)]
-            centro = centroMassaX pontos -- (300*1 + 700*3) / 1000 = 2400/1000 = 2.4
+        centro = centroMassaX pontos -- (300*1 + 700*3) / 1000 = 2400/1000 = 2.4
         esperado = 2.4
     in abs (centro- esperado) < 0.01
 
 
 testeCentroMassaAviao::Bool
 testeCentroMassaAviao =
-    -- Avião: fuselagem (5000kg) em x=10m, asas (2000kg) em x=8m, cauda (500kg) em x=20mlet pontos = [(5000, 10), (2000, 8), (500, 20)]
-    centro = centroMassaX pontos -- (5000*10 + 2000*8 + 500*20) / 7500 = 76000/7500 = 10.13
-    esperado = 76000/7500
+    -- Avião: fuselagem (5000kg) em x=10m, asas (2000kg) em x=8m, cauda (500kg) em x=20m
+    let pontos = [(5000, 10), (2000, 8), (500, 20)]
+        centro = centroMassaX pontos -- (5000*10 + 2000*8 + 500*20) / 7500 = 76000/7500 = 10.13
+        esperado = 76000/7500
     in abs (centro- esperado) < 0.1
 
 
 testeCentroMassaUmPonto::Bool
 testeCentroMassaUmPonto =
     let pontos = [(100, 5.5)] -- só um ponto
-            centro = centroMassaX pontos
+        centro = centroMassaX pontos
         esperado = 5.5 -- deve retornar a própria posição
     in abs (centro- esperado) < 0.001
 
@@ -565,7 +570,7 @@ testeCentroMassaUmPonto =
 testeCentroMassaPosicoesNegativas::Bool
 testeCentroMassaPosicoesNegativas =
     let pontos = [(2,-5), (3,-1), (5, 3)]
-            centro = centroMassaX pontos -- (2*(-5) + 3*(-1) + 5*3) / 10 = (-10-3+15) / 10 = 0.2
+        centro = centroMassaX pontos -- (2*(-5) + 3*(-1) + 5*3) / 10 = (-10-3+15) / 10 = 0.2
         esperado = 0.2
     in abs (centro- esperado) < 0.001
 
@@ -573,7 +578,7 @@ testeCentroMassaPosicoesNegativas =
 testeCentroMassaDecimal::Bool
 testeCentroMassaDecimal =
     let pontos = [(1.5, 2.3), (2.7, 4.8), (3.2, 1.9)]
-            centro = centroMassaX pontos
+        centro = centroMassaX pontos
         numerador = 1.5*2.3 + 2.7 * 4.8 + 3.2 * 1.9
         denominador = 1.5 + 2.7 + 3.2
         esperado = numerador / denominador
@@ -584,7 +589,7 @@ testeCentroMassaGrande::Bool
 testeCentroMassaGrande =
     -- Muitos pontos
     let pontos = [(fromIntegral i, fromIntegral (i*2)) | i <- [1..10]]
-            centro = centroMassaX pontos --  (i * 2i) /  (i) =  (2i²) /  (i) = 2* (i²) /  (i),
+        centro = centroMassaX pontos --  (i * 2i) /  (i) =  (2i²) /  (i) = 2* (i²) /  (i),
 
     -- Para i=1..10:  (i) = 55,  (i²) = 385
         esperado = 2 * 385 / 55 -- = 14
@@ -597,13 +602,14 @@ testeCasoRealMotocicleta::Bool
 testeCasoRealMotocicleta =
     -- Motocicleta fazendo curva
     let massa = 250 -- 250 kg (moto + piloto)
-            velocidade = 15 -- 15 m/s (54 km/h)
-        raio = 30 -- curva de raio 30m -- CálculosenergiaCin = energiaCinetica massa velocidade
+        velocidade = 15 -- 15 m/s (54 km/h)
+        raio = 30 -- curva de raio 30m -- Cálculos
+        energiaCin = energiaCinetica massa velocidade
         aceleracao = aceleracaocentripeta velocidade raio
         omega = velocidadeAngular velocidade raio -- Verificações físicas
-    energiaOk = energiaCin > 25000 && energiaCin < 30000 -- ~28 kJ
-    aceleracaoOk = aceleracao > 7 && aceleracao < 8
-    omegaOk = omega > 0.4 && omega < 0.6
+        energiaOk = energiaCin > 25000 && energiaCin < 30000 -- ~28 kJ
+        aceleracaoOk = aceleracao > 7 && aceleracao < 8
+        omegaOk = omega > 0.4 && omega < 0.6
     in energiaOk && aceleracaoOk && omegaOk
 
 
@@ -611,15 +617,15 @@ testeCasoRealGuindaste::Bool
 testeCasoRealGuindaste =
     -- Guindaste levantando carga
     let massa = 2000
-            altura = 20 -- 2 toneladas -- 20 m
+        altura = 20 -- 2 toneladas -- 20 m
         raioLanca = 15 -- braço do guindaste 15 m
         forcaLanca = 150000 -- força na lança -- Cálculos
         energiaPot = energiaPotencial massa altura
-    torque = calcularTorque forcaLanca raioLanca (pi/2),
+        torque = calcularTorque forcaLanca raioLanca (pi/2)
 
-    -- Verificações -- ~7.5 m/s²-- ~0.5 rad/s
-    energiaOk = energiaPot > 390000 && energiaPot < 400000 -- ~392 kJ
-    torqueOk = torque > 2000000 && torque < 2500000 -- ~2.25 MN·m
+        -- Verificações -- ~7.5 m/s²-- ~0.5 rad/s
+        energiaOk = energiaPot > 390000 && energiaPot < 400000 -- ~392 kJ
+        torqueOk = torque > 2000000 && torque < 2500000 -- ~2.25 MN·m
     in energiaOk && torqueOk
 
 
@@ -627,12 +633,12 @@ testeCasoRealTurbina::Bool
 testeCasoRealTurbina =
     -- Turbina eólica
     let raio = 50 -- raio das pás 50 m
-            velocidadeVento = 15 -- vento a 15 m/s
+        velocidadeVento = 15 -- vento a 15 m/s
         velocidadePonta = velocidadeVento * 3 -- ponta 3x mais rápida -- Cálculos
         omega = velocidadeAngular velocidadePonta raio
         aceleracao = aceleracaocentripeta velocidadePonta raio -- Verificações
-    omegaOk = omega > 0.8 && omega < 1.0 -- ~0.9 rad/s
-    aceleracaoOk = aceleracao > 40 && aceleracao < 45 -- ~40.5 m/s²
+        omegaOk = omega > 0.8 && omega < 1.0 -- ~0.9 rad/s
+        aceleracaoOk = aceleracao > 40 && aceleracao < 45 -- ~40.5 m/s²
     in omegaOk && aceleracaoOk
 
 
@@ -640,7 +646,7 @@ testeCasoRealBalanca::Bool
 testeCasoRealBalanca =
     -- Sistema de alavanca/balança
     let pontos = [(5,-1), (10, 0), (15, 2)] -- massas na balança
-            centro = centroMassaX pontos -- Para equilíbrio, momento total deve ser zero em relação ao centro
+        centro = centroMassaX pontos -- Para equilíbrio, momento total deve ser zero em relação ao centro
         momentoTotal = sum [(m * (x- centro)) | (m, x) <- pontos] -- Verificação: momento deve ser próximo de zero (equilíbrio)
         equilibrioOk = abs momentoTotal < 0.1
         centroOk = centro > 0.8 && centro < 1.0
@@ -651,7 +657,7 @@ testeCasoRealVooAviao::Bool
 testeCasoRealVooAviao =
     -- Avião em voo nivelado fazendo curva
     let massa = 80000 -- 80 toneladas
-            velocidade = 250 -- 900 km/h = 250 m/s
+        velocidade = 250 -- 900 km/h = 250 m/s
         raio = 5000 -- curva suave de 5 km
         altitude = 10000 -- 10 km -- Cálculos
         energiaCin = energiaCinetica massa velocidade
@@ -684,7 +690,8 @@ executarTestesEngenhariaMecanica = do
     putStrLn $ "Roda: " ++ show testeVelocidadeAngularRoda
     putStrLn $ "Engrenagem: " ++ show testeVelocidadeAngularEngrenagem
     putStrLn $ "Turbina: " ++ show testeVelocidadeAngularTurbina
-    putStrLn $ "Zero: " ++ show testeVelocidadeAngularZeroputStrLn $ "Velocidade alta: " ++ show testeVelocidadeAngularVelocidadeAlta
+    putStrLn $ "Zero: " ++ show testeVelocidadeAngularZero
+    putStrLn $ "Velocidade alta: " ++ show testeVelocidadeAngularVelocidadeAlta
     putStrLn $ "Raio grande: " ++ show testeVelocidadeAngularRaioGrande
     putStrLn $ "Raio pequeno: " ++ show testeVelocidadeAngularRaioPequeno
     putStrLn $ "Decimal: " ++ show testeVelocidadeAngularDecimal
@@ -731,7 +738,8 @@ executarTestesEngenhariaMecanica = do
     putStrLn $ "Corpo L: " ++ show testeCentroMassaCorpoL
     putStrLn $ "Veículo: " ++ show testeCentroMassaVeiculo
     putStrLn $ "Avião: " ++ show testeCentroMassaAviao
-    putStrLn $ "Um ponto: " ++ show testeCentroMassaUmPontoputStrLn $ "Posições negativas: " ++ show testeCentroMassaPosicoesNegativas
+    putStrLn $ "Um ponto: " ++ show testeCentroMassaUmPonto
+    putStrLn $ "Posições negativas: " ++ show testeCentroMassaPosicoesNegativas
     putStrLn $ "Decimal: " ++ show testeCentroMassaDecimal
     putStrLn $ "Grande: " ++ show testeCentroMassaGrande
     putStrLn "\n -- TESTES CASOS REAIS --"
@@ -744,83 +752,83 @@ executarTestesEngenhariaMecanica = do
 
 testesEngenhariaMecanica::[(String, Bool)]
 testesEngenhariaMecanica = [
-    -- Torque (10 testes)
-    ("Torque Básico", testeTorqueBasico),
-    ("Torque Força Perpendicular", testeTorqueForcaPerpendicular),
-    ("Torque Força Paralela", testeTorqueForcaParalela),
-    ("Torque Ângulo 45°", testeTorqueAngulo45Graus),
-    ("Torque Ângulo 30°", testeTorqueAngulo30Graus),
-    ("Torque Chave Inglesa", testeTorqueChaveInglesa),
-    ("Torque Motor Elétrico", testeTorqueMotorEletrico),
-    ("Torque Valor Grande", testeTorqueValorGrande),
-    ("Torque Valor Pequeno", testeTorqueValorPequeno),
-    ("Torque Precisão", testeTorquePrecisao),
+        -- Torque (10 testes)
+        ("Torque Básico", testeTorqueBasico),
+        ("Torque Força Perpendicular", testeTorqueForcaPerpendicular),
+        ("Torque Força Paralela", testeTorqueForcaParalela),
+        ("Torque Ângulo 45°", testeTorqueAngulo45Graus),
+        ("Torque Ângulo 30°", testeTorqueAngulo30Graus),
+        ("Torque Chave Inglesa", testeTorqueChaveInglesa),
+        ("Torque Motor Elétrico", testeTorqueMotorEletrico),
+        ("Torque Valor Grande", testeTorqueValorGrande),
+        ("Torque Valor Pequeno", testeTorqueValorPequeno),
+        ("Torque Precisão", testeTorquePrecisao),
 
-    -- Velocidade Angular (10 testes)
-    ("Velocidade Angular Básica", testeVelocidadeAngularBasica),
-    ("Velocidade Angular Roda", testeVelocidadeAngularRoda),
-    ("Velocidade Angular Engrenagem", testeVelocidadeAngularEngrenagem),
-    ("Velocidade Angular Turbina", testeVelocidadeAngularTurbina),
-    ("Velocidade Angular Zero", testeVelocidadeAngularZero),
-    ("Velocidade Angular Alta", testeVelocidadeAngularVelocidadeAlta),
-    ("Velocidade Angular Raio Grande", testeVelocidadeAngularRaioGrande),
-    ("Velocidade Angular Raio Pequeno", testeVelocidadeAngularRaioPequeno),
-    ("Velocidade Angular Decimal", testeVelocidadeAngularDecimal),
-    ("Velocidade Angular RPM", testeVelocidadeAngularRPM),
+        -- Velocidade Angular (10 testes)
+        ("Velocidade Angular Básica", testeVelocidadeAngularBasica),
+        ("Velocidade Angular Roda", testeVelocidadeAngularRoda),
+        ("Velocidade Angular Engrenagem", testeVelocidadeAngularEngrenagem),
+        ("Velocidade Angular Turbina", testeVelocidadeAngularTurbina),
+        ("Velocidade Angular Zero", testeVelocidadeAngularZero),
+        ("Velocidade Angular Alta", testeVelocidadeAngularVelocidadeAlta),
+        ("Velocidade Angular Raio Grande", testeVelocidadeAngularRaioGrande),
+        ("Velocidade Angular Raio Pequeno", testeVelocidadeAngularRaioPequeno),
+        ("Velocidade Angular Decimal", testeVelocidadeAngularDecimal),
+        ("Velocidade Angular RPM", testeVelocidadeAngularRPM),
 
-    -- Aceleração Centrípeta (10 testes)
-    ("Aceleração Centrípeta Básica", testeAceleracaocentripetaBasica),
-    ("Aceleração Centrípeta Carro", testeAceleracaocentripetaCarro),
-    ("Aceleração Centrípeta Avião", testeAceleracaocentripetaAviao),
-    ("Aceleração Centrípeta Satélite", testeAceleracaocentripetaSatelite),
-    ("Aceleração Centrípeta Centrífuga", testeAceleracaocentripetaCentrifuga),
-    ("Aceleração Centrípeta Zero", testeAceleracaocentripetaZeroVelocidade),
-    ("Aceleração Centrípeta Baixa", testeAceleracaocentripetaVelocidadeBaixa),
-    ("Aceleração Centrípeta Raio Grande", testeAceleracaocentripetaRaioGrande),
-    ("Aceleração Centrípeta Raio Pequeno", testeAceleracaocentripetaRaioPequeno),
-    ("Aceleração Centrípeta Precisão", testeAceleracaocentripetaPrecisao),
+        -- Aceleração Centrípeta (10 testes)
+        ("Aceleração Centrípeta Básica", testeAceleracaocentripetaBasica),
+        ("Aceleração Centrípeta Carro", testeAceleracaocentripetaCarro),
+        ("Aceleração Centrípeta Avião", testeAceleracaocentripetaAviao),
+        ("Aceleração Centrípeta Satélite", testeAceleracaocentripetaSatelite),
+        ("Aceleração Centrípeta Centrífuga", testeAceleracaocentripetaCentrifuga),
+        ("Aceleração Centrípeta Zero", testeAceleracaocentripetaZeroVelocidade),
+        ("Aceleração Centrípeta Baixa", testeAceleracaocentripetaVelocidadeBaixa),
+        ("Aceleração Centrípeta Raio Grande", testeAceleracaocentripetaRaioGrande),
+        ("Aceleração Centrípeta Raio Pequeno", testeAceleracaocentripetaRaioPequeno),
+        ("Aceleração Centrípeta Precisão", testeAceleracaocentripetaPrecisao),
 
-    -- Energia Cinética (10 testes)
-    ("Energia Cinética Básica", testeEnergiaCineticaBasica),
-    ("Energia Cinética Carro", testeEnergiaCineticaCarro), ("Energia Cinética Bala", testeEnergiaCineticaBala),
-    ("Energia Cinética Trem", testeEnergiaCineticaTrem),
-    ("Energia Cinética Pessoa", testeEnergiaCineticaPessoa),
-    ("Energia Cinética Velocidade Zero", testeEnergiaCineticaVelocidadeZero),
-    ("Energia Cinética Massa Zero", testeEnergiaCineticaMassaZero),
-    ("Energia Cinética Velocidade Alta", testeEnergiaCineticaVelocidadeAlta),
-    ("Energia Cinética Massa Grande", testeEnergiaCineticaMassaGrande),
-    ("Energia Cinética Decimal", testeEnergiaCineticaDecimal),
+        -- Energia Cinética (10 testes)
+        ("Energia Cinética Básica", testeEnergiaCineticaBasica),
+        ("Energia Cinética Carro", testeEnergiaCineticaCarro), ("Energia Cinética Bala", testeEnergiaCineticaBala),
+        ("Energia Cinética Trem", testeEnergiaCineticaTrem),
+        ("Energia Cinética Pessoa", testeEnergiaCineticaPessoa),
+        ("Energia Cinética Velocidade Zero", testeEnergiaCineticaVelocidadeZero),
+        ("Energia Cinética Massa Zero", testeEnergiaCineticaMassaZero),
+        ("Energia Cinética Velocidade Alta", testeEnergiaCineticaVelocidadeAlta),
+        ("Energia Cinética Massa Grande", testeEnergiaCineticaMassaGrande),
+        ("Energia Cinética Decimal", testeEnergiaCineticaDecimal),
 
-    -- Energia Potencial (10 testes)
-    ("Energia Potencial Básica", testeEnergiaPotencialBasica),
-    ("Energia Potencial Pessoa", testeEnergiaPotencialPessoa),
-    ("Energia Potencial Elevador", testeEnergiaPotencialElevador),
-    ("Energia Potencial Hidrelétrica", testeEnergiaPotencialHidroeletrica),
-    ("Energia Potencial Montanha", testeEnergiaPotencialMontanha),
-    ("Energia Potencial Altura Zero", testeEnergiaPotencialAlturaZero),
-    ("Energia Potencial Massa Zero", testeEnergiaPotencialMassaZero),
-    ("Energia Potencial Altura Grande", testeEnergiaPotencialAlturaGrande),
-    ("Energia Potencial Decimal", testeEnergiaPotencialDecimal),
-    ("Energia Potencial Gravidade", testeEnergiaPotencialPrecisaoGravidade),
+        -- Energia Potencial (10 testes)
+        ("Energia Potencial Básica", testeEnergiaPotencialBasica),
+        ("Energia Potencial Pessoa", testeEnergiaPotencialPessoa),
+        ("Energia Potencial Elevador", testeEnergiaPotencialElevador),
+        ("Energia Potencial Hidrelétrica", testeEnergiaPotencialHidroeletrica),
+        ("Energia Potencial Montanha", testeEnergiaPotencialMontanha),
+        ("Energia Potencial Altura Zero", testeEnergiaPotencialAlturaZero),
+        ("Energia Potencial Massa Zero", testeEnergiaPotencialMassaZero),
+        ("Energia Potencial Altura Grande", testeEnergiaPotencialAlturaGrande),
+        ("Energia Potencial Decimal", testeEnergiaPotencialDecimal),
+        ("Energia Potencial Gravidade", testeEnergiaPotencialPrecisaoGravidade),
 
-    -- Centro de Massa (12 testes)
-    ("Centro Massa Básico", testeCentroMassaBasico),
-    ("Centro Massa Dois Pontos", testeCentroMassaDoisPontos),
-    ("Centro Massa Massas Iguais", testeCentroMassaMassasIguais),
-    ("Centro Massa Massas Diferentes", testeCentroMassaMassasDiferentes),
-    ("Centro Massa Barra", testeCentroMassaBarra),
-    ("Centro Massa Corpo L", testeCentroMassaCorpoL),
-    ("Centro Massa Veículo", testeCentroMassaVeiculo),
-    ("Centro Massa Avião", testeCentroMassaAviao),
-    ("Centro Massa Um Ponto", testeCentroMassaUmPonto),
-    ("Centro Massa Posições Negativas", testeCentroMassaPosicoesNegativas),
-    ("Centro Massa Decimal", testeCentroMassaDecimal),
-    ("Centro Massa Grande", testeCentroMassaGrande),
+        -- Centro de Massa (12 testes)
+        ("Centro Massa Básico", testeCentroMassaBasico),
+        ("Centro Massa Dois Pontos", testeCentroMassaDoisPontos),
+        ("Centro Massa Massas Iguais", testeCentroMassaMassasIguais),
+        ("Centro Massa Massas Diferentes", testeCentroMassaMassasDiferentes),
+        ("Centro Massa Barra", testeCentroMassaBarra),
+        ("Centro Massa Corpo L", testeCentroMassaCorpoL),
+        ("Centro Massa Veículo", testeCentroMassaVeiculo),
+        ("Centro Massa Avião", testeCentroMassaAviao),
+        ("Centro Massa Um Ponto", testeCentroMassaUmPonto),
+        ("Centro Massa Posições Negativas", testeCentroMassaPosicoesNegativas),
+        ("Centro Massa Decimal", testeCentroMassaDecimal),
+        ("Centro Massa Grande", testeCentroMassaGrande),
 
-    -- Casos Reais (5 testes)
-    ("Caso Real Motocicleta", testeCasoRealMotocicleta),
-    ("Caso Real Guindaste", testeCasoRealGuindaste),
-    ("Caso Real Turbina", testeCasoRealTurbina),
-    ("Caso Real Balança", testeCasoRealBalanca),
-    ("Caso Real Voo Avião", testeCasoRealVooAvião)
-]
+        -- Casos Reais (5 testes)
+        ("Caso Real Motocicleta", testeCasoRealMotocicleta),
+        ("Caso Real Guindaste", testeCasoRealGuindaste),
+        ("Caso Real Turbina", testeCasoRealTurbina),
+        ("Caso Real Balança", testeCasoRealBalanca),
+        ("Caso Real Voo Avião", testeCasoRealVooAviao)
+    ]
